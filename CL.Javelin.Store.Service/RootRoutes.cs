@@ -13,14 +13,22 @@ namespace CL.Javelin.Store.Service
 
         private dynamic OpenFreightRequests(dynamic parameters)
         {
+            // mock data
             var openFreightRequests = new List<Core.Domain.Freight.Request>
             {
                 new Core.Domain.Freight.Request
                 {
                     Customer = "Coca Cola",
-                    Origin = "Detroit, MI",
+                    Origin = "Atlanta, GA",
                     Destination = "Chicago, IL",
                     Deadline = new DateTime(2016, 4, 1)
+                },
+                new Core.Domain.Freight.Request
+                {
+                    Customer = "McDonalds",
+                    Origin = "Oakbrook, IL",
+                    Destination = "Detroit, MI",
+                    Deadline = new DateTime(2016, 4, 2)
                 }
             };
 

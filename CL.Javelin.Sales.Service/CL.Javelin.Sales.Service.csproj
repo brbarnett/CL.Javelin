@@ -58,6 +58,12 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CL.Javelin.Core.Domain\CL.Javelin.Core.Domain.csproj">
+      <Project>{46f53d0d-6df6-4a6b-8f68-b97841725ccd}</Project>
+      <Name>CL.Javelin.Core.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
