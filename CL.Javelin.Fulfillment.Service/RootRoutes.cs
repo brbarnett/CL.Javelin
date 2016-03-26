@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Nancy;
 
 namespace CL.Javelin.Fulfillment.Service
@@ -9,6 +10,8 @@ namespace CL.Javelin.Fulfillment.Service
         {   
             base.Get["/fulfillment/getOpenRequests", true] = async (x, ct) =>
             {
+                Console.WriteLine("GET: /fulfillment/getOpenRequests");
+
                 var openFreightRequests = await Core.Utilities.Http.Get<List<Core.Domain.Freight.Request>>("http://127.0.0.1:9000/freight/openRequests");
 
                 return base.Response.AsJson(openFreightRequests);

@@ -13,6 +13,8 @@ namespace CL.Javelin.Store.Service
 
         private dynamic OpenFreightRequests(dynamic parameters)
         {
+            Console.WriteLine("GET: /freight/openRequests");
+
             // mock data
             var openFreightRequests = new List<Core.Domain.Freight.Request>
             {
