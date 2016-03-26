@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Nancy.Hosting.Self;
 
 namespace CL.Javelin.Sales.Service
 {
@@ -10,6 +7,14 @@ namespace CL.Javelin.Sales.Service
     {
         static void Main(string[] args)
         {
+            var url = "http://127.0.0.1:9001";
+
+            using (var host = new NancyHost(new Uri(url)))
+            {
+                host.Start();
+                Console.WriteLine($"Sales server listening on {url}");
+                Console.ReadLine();
+            }
         }
     }
 }

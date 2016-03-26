@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Nancy.Hosting.Self;
 
 namespace CL.Javelin.NotificationHub
 {
@@ -10,6 +7,14 @@ namespace CL.Javelin.NotificationHub
     {
         static void Main(string[] args)
         {
+            var url = "http://127.0.0.1:9002";
+
+            using (var host = new NancyHost(new Uri(url)))
+            {
+                host.Start();
+                Console.WriteLine($"NotificationHub server listening on {url}");
+                Console.ReadLine();
+            }
         }
     }
 }

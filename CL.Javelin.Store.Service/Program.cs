@@ -12,7 +12,7 @@ namespace CL.Javelin.Store.Service
             using (var host = new NancyHost(new Uri(url)))
             {
                 host.Start();
-                Console.WriteLine($"Nancy Server listening on {url}");
+                Console.WriteLine($"Store server listening on {url}");
                 Console.ReadLine();
             }
         }
