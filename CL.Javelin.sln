@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CL.Javelin.Fulfillment.Serv
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CL.Javelin.Store.Service", "CL.Javelin.Store.Service\CL.Javelin.Store.Service.csproj", "{E9361B84-64BB-44B8-B29A-4E453908516B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CL.Javeliln.Sales.Client", "CL.Javeliln.Sales.Client\CL.Javeliln.Sales.Client.csproj", "{FBF72070-4C69-4EF2-A4B1-B6900237BD31}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CL.Javelin.Sales.Client", "CL.Javelin.Sales.Client\CL.Javelin.Sales.Client.csproj", "{FBF72070-4C69-4EF2-A4B1-B6900237BD31}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CL.Javelin.Fulfillment.Client", "CL.Javelin.Fulfillment.Client\CL.Javelin.Fulfillment.Client.csproj", "{DFE3455C-C40B-4183-888D-03CA418C9237}"
 EndProject

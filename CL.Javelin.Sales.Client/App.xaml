@@ -1,8 +1,8 @@
 ﻿<Application
-    x:Class="CL.Javeliln.Sales.Client.App"
+    x:Class="CL.Javelin.Sales.Client.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:CL.Javeliln.Sales.Client"
+    xmlns:local="using:CL.Javelin.Sales.Client"
     RequestedTheme="Light">
 
 </Application>
