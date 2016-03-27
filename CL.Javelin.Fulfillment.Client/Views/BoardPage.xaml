@@ -17,9 +17,16 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBlock>Board page</TextBlock>
-
-        <ListView ItemsSource="{Binding Requests}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition> <!-- Header -->
+            <RowDefinition Height="*"></RowDefinition> <!-- Content -->
+        </Grid.RowDefinitions>
+        
+        <Grid Grid.Row="0">
+            <Image Source="../Assets/coyote.jpg" Height="50" Width="50"></Image>
+        </Grid>
+        
+        <ListView Grid.Row="1" ItemsSource="{Binding Requests}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <TextBlock>
