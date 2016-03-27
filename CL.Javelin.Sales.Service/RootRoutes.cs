@@ -9,7 +9,7 @@ namespace CL.Javelin.Sales.Service
     {
         public RootRoutes()
         {
-            base.Post["/sales/createFreightRequest", true] = this.CreateFreightRequest;
+            base.Post["/sales/createFreightRequest"] = this.CreateFreightRequest;
         }
         
         private async Task<dynamic> CreateFreightRequest(dynamic parameters, CancellationToken ct)

@@ -8,7 +8,7 @@ namespace CL.Javelin.Fulfillment.Service
     {
         public RootRoutes()
         {   
-            base.Get["/fulfillment/getOpenRequests", true] = async (x, ct) =>
+            base.Get["/fulfillment/getOpenRequests"] = async (x, ct) =>
             {
                 Console.WriteLine("GET: /fulfillment/getOpenRequests");
 

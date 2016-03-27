@@ -11,8 +11,11 @@ namespace CL.Javelin.Store.Service
     {
         public RootRoutes()
         {
-            base.Get["/freight/openRequests", true] = this.OpenFreightRequests;
-            base.Post["/freight/createRequest", true] = this.CreateFreightRequest;
+            base.Get["/freight/requests"] = this.OpenFreightRequests;
+            base.Get["/freight/requests/{id}"] = this.OpenFreightRequests;
+            base.Post["/freight/request"] = this.CreateFreightRequest;
+            base.Put["/freight/request"] = this.CreateFreightRequest;
+            base.Delete["/freight/request"] = this.CreateFreightRequest;
         }
 
         private async Task<dynamic> OpenFreightRequests(dynamic parameters, CancellationToken ct)
