@@ -32,8 +32,8 @@ namespace CL.Javelin.Fulfillment.Client
             this.InitializeComponent();
 
             var hubConnection = new HubConnection("http://127.0.0.1:9002/notifier");
-            IHubProxy notifierProxy = hubConnection.CreateHubProxy("NotificationHub");
-            notifierProxy.On<string, string>("Created", (n, m) => this.SetRequest(m));
+            IHubProxy notificationHubProxy = hubConnection.CreateHubProxy("NotificationHub");
+            notificationHubProxy.On<string, string>("push", (n, m) => this.SetRequest(m));
             hubConnection.Start().Wait();
         }
 
