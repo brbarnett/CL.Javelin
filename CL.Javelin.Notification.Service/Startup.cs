@@ -12,7 +12,7 @@ namespace CL.Javelin.Notification.Service
             var configuration = new HubConfiguration { EnableDetailedErrors = true };
 
             app
-                .MapSignalR("/notifier", configuration)
+                .MapSignalR("/push", configuration)
                 .UseNancy();
         }
     }
