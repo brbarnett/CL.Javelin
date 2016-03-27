@@ -24,6 +24,7 @@ namespace CL.Javelin.Store.Service
             {
                 new Core.Domain.Freight.Request
                 {
+                    Id = new Guid("53008bea-7743-4af3-9fb2-b8f0516650ab"),
                     Customer = "Coca Cola",
                     Origin = "Atlanta, GA",
                     Destination = "Chicago, IL",
@@ -31,6 +32,7 @@ namespace CL.Javelin.Store.Service
                 },
                 new Core.Domain.Freight.Request
                 {
+                    Id = new Guid("d57d1e30-6720-469d-8f99-06e6a3ddc356"),
                     Customer = "McDonalds",
                     Origin = "Oakbrook, IL",
                     Destination = "Detroit, MI",
