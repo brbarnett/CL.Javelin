@@ -7,7 +7,5 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="Black">
-        <Image Height="64" Width="64" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="30" Source="Assets/coyote.jpg"></Image>
-    </Grid>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" />
 </Page>

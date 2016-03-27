@@ -1,21 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-using CL.Javelin.Core.Domain.Freight;
-using Microsoft.AspNet.SignalR.Client;
-
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
+﻿using Windows.UI.Xaml.Controls;
 
 namespace CL.Javelin.Fulfillment.Client
 {
@@ -24,22 +7,18 @@ namespace CL.Javelin.Fulfillment.Client
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        //public Request Request { get; set; } = new Request();
-        public string Message { get; set; }
-
         public MainPage()
         {
             this.InitializeComponent();
 
-            var hubConnection = new HubConnection("http://127.0.0.1:9002/push");
-            IHubProxy notificationHubProxy = hubConnection.CreateHubProxy("NotificationHub");
-            notificationHubProxy.On<string, string>("push", (n, m) => this.SetRequest(m));
-            hubConnection.Start().Wait();
-        }
+            //var requests = await Core.Utilities.Http.Get<IEnumerable<Request>>("http://127.0.0.1:9003/fulfillment/getOpenRequests")
+            //this.Requests = new ObservableCollection<Request>(requests); ;
+            //this.Requests.Add();
 
-        private void SetRequest(string message)
-        {
-            this.Message = message;
+            //var hubConnection = new HubConnection("http://127.0.0.1:9002/push");
+            //IHubProxy notificationHubProxy = hubConnection.CreateHubProxy("NotificationHub");
+            //notificationHubProxy.On<string, string>("push", (n, m) => this.SetRequest(m));
+            //hubConnection.Start().Wait();
         }
     }
 }
