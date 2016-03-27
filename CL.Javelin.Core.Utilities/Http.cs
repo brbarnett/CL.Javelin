@@ -1,6 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Net;
+﻿using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
@@ -10,16 +8,9 @@ namespace CL.Javelin.Core.Utilities
     {
         public static async Task<string> Get(string url)
         {
-            string data = String.Empty;
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-            
-            using (HttpWebResponse response = (HttpWebResponse)await request.GetResponseAsync())
-            using (Stream stream = response.GetResponseStream())
-                if (stream != null)
-                    using (StreamReader reader = new StreamReader(stream))
-                    {
-                        data = reader.ReadToEnd();
-                    }
+
+            HttpClient httpClient = new HttpClient();
+            string data = await httpClient.GetStringAsync(url);
 
             return data;
         }
@@ -29,6 +20,17 @@ namespace CL.Javelin.Core.Utilities
             string data = await Get(url);
 
             return JsonConvert.DeserializeObject<TResult>(data);
+        }
+
+        public static async Task<HttpResponseMessage> Post(string url, object body)
+        {
+            HttpClient httpClient = new HttpClient();
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, url);
+            request.Content = new StringContent(JsonConvert.SerializeObject(body));
+
+            var response = await httpClient.SendAsync(request);
+
+            return response;
         }
     }
 }

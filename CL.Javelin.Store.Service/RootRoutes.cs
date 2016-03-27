@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using Nancy;
+using Nancy.ModelBinding;
 
 namespace CL.Javelin.Store.Service
 {
@@ -8,10 +11,11 @@ namespace CL.Javelin.Store.Service
     {
         public RootRoutes()
         {
-            base.Get["/freight/openRequests"] = this.OpenFreightRequests;
+            base.Get["/freight/openRequests", true] = this.OpenFreightRequests;
+            base.Post["/freight/createRequest", true] = this.CreateFreightRequest;
         }
 
-        private dynamic OpenFreightRequests(dynamic parameters)
+        private async Task<dynamic> OpenFreightRequests(dynamic parameters, CancellationToken ct)
         {
             Console.WriteLine("GET: /freight/openRequests");
 
@@ -35,6 +39,18 @@ namespace CL.Javelin.Store.Service
             };
 
             return base.Response.AsJson(openFreightRequests);
+        }
+
+        private async Task<dynamic> CreateFreightRequest(dynamic parameters, CancellationToken ct)
+        {
+            Console.WriteLine("POST: /freight/createRequest");
+
+            var request = this.Bind<Core.Domain.Freight.Request>();
+
+            // created, now notify
+            await Core.Utilities.Http.Post("http://127.0.0.1:9002/freight/requestCreated", request);
+
+            return request;
         }
     }
 }
