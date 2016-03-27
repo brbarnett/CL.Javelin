@@ -1,7 +1,7 @@
 ﻿using System;
-using Nancy.Hosting.Self;
+using Microsoft.Owin.Hosting;
 
-namespace CL.Javelin.NotificationHub
+namespace CL.Javelin.Notification.Service
 {
     class Program
     {
@@ -9,9 +9,8 @@ namespace CL.Javelin.NotificationHub
         {
             var url = "http://127.0.0.1:9002";
 
-            using (var host = new NancyHost(new Uri(url)))
+            using (WebApp.Start<Startup>(url))
             {
-                host.Start();
                 Console.WriteLine($"NotificationHub server listening on {url}");
                 Console.ReadLine();
             }

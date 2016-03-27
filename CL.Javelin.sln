@@ -7,7 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Clients", "Clients", "{7721
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{8FF82EB2-823B-4B4E-8FB8-426DF874C3E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CL.Javelin.NotificationHub", "CL.Javelin.NotificationHub\CL.Javelin.NotificationHub.csproj", "{16FFB160-3CA5-449A-B7A1-0BFA7D6F7D23}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CL.Javelin.Notification.Service", "CL.Javelin.Notification.Service\CL.Javelin.Notification.Service.csproj", "{16FFB160-3CA5-449A-B7A1-0BFA7D6F7D23}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CL.Javelin.Sales.Service", "CL.Javelin.Sales.Service\CL.Javelin.Sales.Service.csproj", "{078AB40E-9E9E-4AF2-B65C-A34513A1E082}"
 EndProject
