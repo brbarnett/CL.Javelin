@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.AspNet.SignalR;
+﻿using Microsoft.AspNet.SignalR;
 
 namespace CL.Javelin.Notification.Service
 {
@@ -7,8 +6,8 @@ namespace CL.Javelin.Notification.Service
     {
         public void Send(string name, string message)
         {
-            Console.WriteLine("{0}", message);
-            base.Clients.All.broadcastMessage(message);
+            var context = GlobalHost.ConnectionManager.GetHubContext<NotificationHub>();
+            context.Clients.All.push(name, message);
         }
     }
 }

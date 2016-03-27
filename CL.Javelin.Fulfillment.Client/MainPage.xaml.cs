@@ -24,7 +24,8 @@ namespace CL.Javelin.Fulfillment.Client
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        public Request Request { get; set; } = new Request();
+        //public Request Request { get; set; } = new Request();
+        public string Message { get; set; }
 
         public MainPage()
         {
@@ -32,13 +33,13 @@ namespace CL.Javelin.Fulfillment.Client
 
             var hubConnection = new HubConnection("http://127.0.0.1:9002/notifier");
             IHubProxy notifierProxy = hubConnection.CreateHubProxy("NotificationHub");
-            notifierProxy.On<Request>("Created", request => this.SetRequest(request));
+            notifierProxy.On<string, string>("Created", (n, m) => this.SetRequest(m));
             hubConnection.Start().Wait();
         }
 
-        private void SetRequest(Request request)
+        private void SetRequest(string message)
         {
-            this.Request = request;
+            this.Message = message;
         }
     }
 }

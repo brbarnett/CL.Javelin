@@ -16,7 +16,7 @@ namespace CL.Javelin.Notification.Service
             {
                 Console.WriteLine("POST: /freight/requestCreated");
 
-                hubContext.Clients.All.FreightCreated("Name", "Message");
+                hubContext.Clients.All.push("Name", "Message");
 
                 return base.Response.AsJson(new { Success = true });
             };
