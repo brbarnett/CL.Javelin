@@ -13,5 +13,7 @@ namespace CL.Javelin.Core.Domain.Freight
         public string Destination { get; set; }
 
         public DateTime Deadline { get; set; }
+
+        public bool Open { get; set; }
     }
 }
