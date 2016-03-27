@@ -14,6 +14,7 @@ using Prism.Windows;
 using Prism.Windows.AppModel;
 using Prism.Windows.Navigation;
 using Windows.UI.Xaml;
+using CL.Javelin.Core.Domain.Freight;
 using Microsoft.VisualBasic;
 using Prism.Mvvm;
 using Prism.Unity.Windows;
@@ -26,6 +27,11 @@ namespace CL.Javelin.Fulfillment.Client
         //private TileUpdater _tileUpdater;
 
         public new IEventAggregator EventAggregator { get; set; }
+
+        public App()
+        {
+            this.InitializeComponent();
+        }
 
         // Documentation on navigation between pages is at http://go.microsoft.com/fwlink/?LinkID=288815&clcid=0x409
         protected override Task OnLaunchApplicationAsync(LaunchActivatedEventArgs args)
@@ -49,7 +55,7 @@ namespace CL.Javelin.Fulfillment.Client
         protected override void OnRegisterKnownTypesForSerialization()
         {
             // Set up the list of known types for the SuspensionManager
-            //SessionStateService.RegisterKnownType(typeof(Address));
+            base.SessionStateService.RegisterKnownType(typeof(Request));
             //SessionStateService.RegisterKnownType(typeof(PaymentMethod));
             //SessionStateService.RegisterKnownType(typeof(UserInfo));
             //SessionStateService.RegisterKnownType(typeof(CheckoutDataViewModel));
@@ -99,13 +105,13 @@ namespace CL.Javelin.Fulfillment.Client
 
             ViewModelLocationProvider.SetDefaultViewTypeToViewModelTypeResolver((viewType) =>
             {
-                var viewModelTypeName = string.Format(CultureInfo.InvariantCulture, "AdventureWorks.UILogic.ViewModels.{0}ViewModel, AdventureWorks.UILogic, Version=1.1.0.0, Culture=neutral", viewType.Name);
+                var viewModelTypeName = string.Format(CultureInfo.InvariantCulture, "CL.Javelin.Fulfillment.Client.ViewModels.{0}ViewModel", viewType.Name);
                 var viewModelType = Type.GetType(viewModelTypeName);
-                if (viewModelType == null)
-                {
-                    viewModelTypeName = string.Format(CultureInfo.InvariantCulture, "AdventureWorks.UILogic.ViewModels.{0}ViewModel, AdventureWorks.UILogic.Windows, Version=1.0.0.0, Culture=neutral", viewType.Name);
-                    viewModelType = Type.GetType(viewModelTypeName);
-                }
+                //if (viewModelType == null)
+                //{
+                //    viewModelTypeName = string.Format(CultureInfo.InvariantCulture, "AdventureWorks.UILogic.ViewModels.{0}ViewModel, AdventureWorks.UILogic.Windows, Version=1.0.0.0, Culture=neutral", viewType.Name);
+                //    viewModelType = Type.GetType(viewModelTypeName);
+                //}
 
                 return viewModelType;
             });

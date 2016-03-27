@@ -10,6 +10,7 @@ namespace CL.Javelin.Fulfillment.Client.DesignViewModels
 
         public BoardPageDesignViewModel()
         {
+
             //var requests = await Core.Utilities.Http.Get<IEnumerable<Request>>("http://127.0.0.1:9003/fulfillment/getOpenRequests")
             //this.Requests = new ObservableCollection<Request>(requests); ;
             this.Load().RunSynchronously();
