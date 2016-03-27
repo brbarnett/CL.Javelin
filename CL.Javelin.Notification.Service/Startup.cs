@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.SignalR;
+﻿using System;
+using Microsoft.AspNet.SignalR;
 using Microsoft.Owin;
 using Owin;
 
@@ -14,6 +15,8 @@ namespace CL.Javelin.Notification.Service
             app
                 .MapSignalR("/push", configuration)
                 .UseNancy();
+
+            Console.WriteLine("SignalR enabled, waiting for websocket connections");
         }
     }
 }
