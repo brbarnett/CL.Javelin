@@ -11,8 +11,7 @@ namespace CL.Javelin.NotificationHub
             {
                 Console.WriteLine("POST: /freight/requestCreated");
 
-                return base.Response.AsText("Good times");
-                //return base.Response.AsJson(openFreightRequests);
+                return base.Response.AsJson(new { Success = true });
             };
         }
     }
