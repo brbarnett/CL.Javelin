@@ -8,7 +8,6 @@ namespace CL.Javelin.Core.Utilities
     {
         public static async Task<string> Get(string url)
         {
-
             HttpClient httpClient = new HttpClient();
             string data = await httpClient.GetStringAsync(url);
 
