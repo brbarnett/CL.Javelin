@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Windows.UI.Core;
 using CL.Javelin.Core.Domain.Freight;
 using CL.Javelin.Sales.Client.Events.Freight.Request;
+using Prism.Commands;
 using Prism.Events;
 using Prism.Windows.Mvvm;
 using Prism.Windows.Navigation;
@@ -24,6 +26,25 @@ namespace CL.Javelin.Sales.Client.ViewModels
             private set { base.SetProperty(ref this._requests, value); }
         }
 
+        public ICommand AddFreightRequestCommand
+        {
+            get
+            {
+                return new DelegateCommand(async () =>
+                {
+                    await
+                        Core.Utilities.Http.Post("http://127.0.0.1:9001/freight/requests",
+                            new Request
+                            {
+                                Customer = "New Customer",
+                                Origin = "Houston, TX",
+                                Destination = "San Francisco, CA",
+                                Deadline = new DateTime(2016, 04, 06)
+                            });
+                });
+            }
+        }
+
         public BoardPageViewModel(IEventAggregator eventAggregator)
         {
             if (eventAggregator == null) throw new ArgumentNullException(nameof(eventAggregator));
@@ -38,7 +59,7 @@ namespace CL.Javelin.Sales.Client.ViewModels
 
         private async Task Load()
         {
-            var requests = await Core.Utilities.Http.Get<IEnumerable<Request>>("http://127.0.0.1:9003/freight/requests");
+            var requests = await Core.Utilities.Http.Get<IEnumerable<Request>>("http://127.0.0.1:9001/freight/requests");
             this.Requests = new ObservableCollection<Request>(requests);
         }
 

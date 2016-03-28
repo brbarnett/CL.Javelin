@@ -19,9 +19,8 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="50"></RowDefinition>
-            <!-- Header -->
             <RowDefinition Height="*"></RowDefinition>
-            <!-- Content -->
+            <RowDefinition Height="100"></RowDefinition>
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
@@ -73,6 +72,21 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="100" />
+            </Grid.ColumnDefinitions>
+            
+            <Button 
+                Grid.Column="1" 
+                Content="Add New"
+                Command="{Binding AddFreightRequestCommand}"
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Top" 
+                Margin="10" />
+        </Grid>
     </Grid>
 </local:NavigationAwarePage>
 
