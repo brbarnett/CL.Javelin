@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using CL.Javelin.Core.Domain.Freight;
 using Prism.Windows.Mvvm;
@@ -24,7 +25,8 @@ namespace CL.Javelin.Fulfillment.Client.ViewModels
 
         private async Task Load()
         {
-            this.Requests = await Core.Utilities.Http.Get<IReadOnlyCollection<Request>>("http://127.0.0.1:9003/fulfillment/getOpenRequests");
+            var requests = await Core.Utilities.Http.Get<IEnumerable<Request>>("http://127.0.0.1:9003/fulfillment/getOpenRequests");
+            this.Requests = requests.ToList().AsReadOnly();
         }
     }
 }
