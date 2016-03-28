@@ -98,7 +98,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DesignViewModels\BoardPageDesignViewModel.cs" />
     <Compile Include="Events\Freight\Request\FreightRequestCreated.cs" />
     <Compile Include="Events\Freight\Request\FreightRequestDeleted.cs" />
     <Compile Include="Events\Freight\Request\FreightRequestUpdated.cs" />
