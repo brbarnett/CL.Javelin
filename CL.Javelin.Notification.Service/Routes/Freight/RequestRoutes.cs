@@ -28,7 +28,7 @@ namespace CL.Javelin.Notification.Service.Routes.Freight
 
             var request = this.Bind<Core.Domain.Freight.Request>();
 
-            this._notificationHubContext.Clients.All.push("Created", request);
+            this._notificationHubContext.Clients.All.FreightRequestCreated(request);
 
             return base.Response.AsJson(new { Success = true });
         }
@@ -39,7 +39,7 @@ namespace CL.Javelin.Notification.Service.Routes.Freight
 
             var request = this.Bind<Core.Domain.Freight.Request>();
 
-            this._notificationHubContext.Clients.All.push("Updated", request);
+            this._notificationHubContext.Clients.All.FreightRequestUpdated(request);
 
             return base.Response.AsJson(new { Success = true });
         }
@@ -50,7 +50,7 @@ namespace CL.Javelin.Notification.Service.Routes.Freight
 
             var request = this.Bind<Core.Domain.Freight.Request>();
 
-            this._notificationHubContext.Clients.All.push("Deleted", request);
+            this._notificationHubContext.Clients.All.FreightRequestDeleted("Deleted", request);
 
             return base.Response.AsJson(new { Success = true });
         }
