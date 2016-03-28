@@ -10,11 +10,6 @@ namespace CL.Javelin.Fulfillment.Client
         public MainPage()
         {
             this.InitializeComponent();
-
-            //var hubConnection = new HubConnection("http://127.0.0.1:9002/push");
-            //IHubProxy notificationHubProxy = hubConnection.CreateHubProxy("NotificationHub");
-            //notificationHubProxy.On<string, string>("push", (n, m) => this.SetRequest(m));
-            //hubConnection.Start().Wait();
         }
     }
 }
