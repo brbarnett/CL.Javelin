@@ -25,14 +25,49 @@
         <Grid Grid.Row="0">
             <Image Source="../Assets/coyote.jpg" Height="50" Width="50"></Image>
         </Grid>
-        
+
         <ListView Grid.Row="1" ItemsSource="{Binding Requests, Mode=OneWay}">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                    <Setter Property="HorizontalAlignment" Value="Stretch" />
+                </Style>
+            </ListView.ItemContainerStyle>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock>
-                        <Run Text="Destination:"></Run>
-                        <Run Text="{Binding Destination}"></Run>
-                    </TextBlock>
+                    
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Row="0" Grid.Column="0">
+                            <Run Text="Customer:"></Run>
+                            <Run Text="{Binding Customer}"></Run>
+                        </TextBlock>
+
+                        <TextBlock Grid.Row="0" Grid.Column="1">
+                            <Run Text="Origin:"></Run>
+                            <Run Text="{Binding Origin}"></Run>
+                        </TextBlock>
+
+                        <TextBlock Grid.Row="0" Grid.Column="2">
+                            <Run Text="Destination:"></Run>
+                            <Run Text="{Binding Destination}"></Run>
+                        </TextBlock>
+
+                        <TextBlock Grid.Row="0" Grid.Column="3">
+                            <Run Text="Deadline:"></Run>
+                            <Run Text="{Binding Deadline}"></Run>
+                        </TextBlock>
+                    </Grid>
+                    
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
