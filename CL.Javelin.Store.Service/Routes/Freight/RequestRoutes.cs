@@ -10,6 +10,8 @@ namespace CL.Javelin.Store.Service.Routes.Freight
 {
     public class RequestRoutes : NancyModule
     {
+        private const string BaseUrl = "/freight/requests";
+
         // mock data
         private List<Core.Domain.Freight.Request> _requests = new List<Core.Domain.Freight.Request>
             {
@@ -35,12 +37,12 @@ namespace CL.Javelin.Store.Service.Routes.Freight
 
         public RequestRoutes()
         {
-            base.Get["/freight/requests"] = this.GetAll;
-            base.Get["/freight/requests/open"] = this.GetAllOpen;
-            base.Get["/freight/requests/{id}"] = this.Get;
-            base.Post["/freight/request"] = this.Create;
-            base.Put["/freight/request"] = this.Update;
-            base.Delete["/freight/request"] = this.Delete;
+            base.Get[$"{BaseUrl}"] = this.GetAll;
+            base.Get[$"{BaseUrl}/open"] = this.GetAllOpen;
+            base.Get[$"{BaseUrl}/{{id}}"] = this.Get;
+            base.Post[$"{BaseUrl}"] = this.Create;
+            base.Put[$"{BaseUrl}"] = this.Update;
+            base.Delete[$"{BaseUrl}/{{id}}"] = this.Delete;
         }
 
         private async Task<dynamic> GetAll(dynamic paramters, CancellationToken ct)
@@ -75,7 +77,7 @@ namespace CL.Javelin.Store.Service.Routes.Freight
             this._requests.Add(request);
 
             // created, now notify
-            await Core.Utilities.Http.Post("http://127.0.0.1:9002/freight/requests/created", request);
+            //await Core.Utilities.Http.Post("http://127.0.0.1:9002/freight/requests/created", request);
 
             return request;
         }
@@ -90,7 +92,7 @@ namespace CL.Javelin.Store.Service.Routes.Freight
             existingRequest = request;
 
             // created, now notify
-            await Core.Utilities.Http.Post("http://127.0.0.1:9002/freight/requests/updated", request);
+            //await Core.Utilities.Http.Post("http://127.0.0.1:9002/freight/requests/updated", request);
 
             return request;
         }
@@ -105,7 +107,7 @@ namespace CL.Javelin.Store.Service.Routes.Freight
             this._requests.Remove(request);
 
             // created, now notify
-            await Core.Utilities.Http.Post("http://127.0.0.1:9002/freight/requests/deleted", request);
+            //await Core.Utilities.Http.Post("http://127.0.0.1:9002/freight/requests/deleted", request);
 
             return base.Response.AsJson(new {Id = id});
         }
