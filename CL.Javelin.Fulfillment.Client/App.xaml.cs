@@ -1,21 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
-using Windows.ApplicationModel.Resources;
-using Windows.UI.Notifications;
-using Microsoft.Practices.ServiceLocation;
 using Microsoft.Practices.Unity;
 using Prism.Events;
-using Prism.Logging;
-using Prism.Windows;
 using Prism.Windows.AppModel;
 using Prism.Windows.Navigation;
 using Windows.UI.Xaml;
 using CL.Javelin.Core.Domain.Freight;
-using Microsoft.VisualBasic;
+using Microsoft.AspNet.SignalR.Client;
 using Prism.Mvvm;
 using Prism.Unity.Windows;
 
@@ -121,7 +114,17 @@ namespace CL.Javelin.Fulfillment.Client
             //_tileUpdater.StartPeriodicUpdate(new Uri(Constants.ServerAddress + "/api/TileNotification"), PeriodicUpdateRecurrence.HalfHour);
             //var resourceLoader = Container.Resolve<IResourceLoader>();
 
+            var hubConnection = new HubConnection("http://127.0.0.1:9002/push");
+            IHubProxy notificationHubProxy = hubConnection.CreateHubProxy("NotificationHub");
+            notificationHubProxy.On<string, Core.Domain.Freight.Request>("push", (n, m) => this.Log(n, m));
+            hubConnection.Start().Wait();
+
             return base.OnInitializeAsync(args);
+        }
+
+        private void Log(string type, Request request)
+        {
+            var r = request;
         }
     }
 }

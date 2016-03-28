@@ -11,10 +11,6 @@ namespace CL.Javelin.Fulfillment.Client
         {
             this.InitializeComponent();
 
-            //var requests = await Core.Utilities.Http.Get<IEnumerable<Request>>("http://127.0.0.1:9003/fulfillment/getOpenRequests")
-            //this.Requests = new ObservableCollection<Request>(requests); ;
-            //this.Requests.Add();
-
             //var hubConnection = new HubConnection("http://127.0.0.1:9002/push");
             //IHubProxy notificationHubProxy = hubConnection.CreateHubProxy("NotificationHub");
             //notificationHubProxy.On<string, string>("push", (n, m) => this.SetRequest(m));
