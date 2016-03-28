@@ -8,6 +8,7 @@ using Prism.Windows.AppModel;
 using Prism.Windows.Navigation;
 using Windows.UI.Xaml;
 using CL.Javelin.Core.Domain.Freight;
+using CL.Javelin.Fulfillment.Client.Events;
 using Microsoft.AspNet.SignalR.Client;
 using Prism.Mvvm;
 using Prism.Unity.Windows;
@@ -116,15 +117,13 @@ namespace CL.Javelin.Fulfillment.Client
 
             var hubConnection = new HubConnection("http://127.0.0.1:9002/push");
             IHubProxy notificationHubProxy = hubConnection.CreateHubProxy("NotificationHub");
-            notificationHubProxy.On<string, Core.Domain.Freight.Request>("push", (n, m) => this.Log(n, m));
+            notificationHubProxy.On<string, Request>("push", (eventType, obj) =>
+            {
+                base.EventAggregator.GetEvent<FreightRequestCreated>().Publish(obj);
+            });
             hubConnection.Start().Wait();
 
             return base.OnInitializeAsync(args);
-        }
-
-        private void Log(string type, Request request)
-        {
-            var r = request;
         }
     }
 }

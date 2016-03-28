@@ -26,7 +26,7 @@
             <Image Source="../Assets/coyote.jpg" Height="50" Width="50"></Image>
         </Grid>
         
-        <ListView Grid.Row="1" ItemsSource="{Binding Requests}">
+        <ListView Grid.Row="1" ItemsSource="{Binding Requests, Mode=OneWay}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <TextBlock>
