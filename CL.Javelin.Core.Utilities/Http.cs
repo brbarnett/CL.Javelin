@@ -1,5 +1,4 @@
 ﻿using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -25,11 +24,7 @@ namespace CL.Javelin.Core.Utilities
 
         public static async Task<SimpleHttpResponse> Post<TResult>(string url, object body)
         {
-            HttpClient httpClient = new HttpClient();
-            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, url);
-            request.Content = new StringContent(JsonConvert.SerializeObject(body), Encoding.UTF8, "application/json");
-            
-            var response = await httpClient.SendAsync(request);
+            var response = await SendRequest(HttpMethod.Post, url, body);
 
             var simpleResponse = new SimpleHttpResponse
             {
@@ -42,11 +37,7 @@ namespace CL.Javelin.Core.Utilities
 
         public static async Task<SimpleHttpResponse> Post(string url, object body)
         {
-            HttpClient httpClient = new HttpClient();
-            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, url);
-            request.Content = new StringContent(JsonConvert.SerializeObject(body), Encoding.UTF8, "application/json");
-
-            var response = await httpClient.SendAsync(request);
+            var response = await SendRequest(HttpMethod.Post, url, body);
 
             var simpleResponse = new SimpleHttpResponse
             {
@@ -59,11 +50,7 @@ namespace CL.Javelin.Core.Utilities
 
         public static async Task<SimpleHttpResponse> Put<TResult>(string url, object body)
         {
-            HttpClient httpClient = new HttpClient();
-            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Put, url);
-            request.Content = new StringContent(JsonConvert.SerializeObject(body), Encoding.UTF8, "application/json");
-
-            var response = await httpClient.SendAsync(request);
+            var response = await SendRequest(HttpMethod.Put, url, body);
 
             var simpleResponse = new SimpleHttpResponse
             {
@@ -72,6 +59,15 @@ namespace CL.Javelin.Core.Utilities
             };
 
             return simpleResponse;
+        }
+
+        private static async Task<HttpResponseMessage> SendRequest(HttpMethod method, string url, object body)
+        {
+            HttpClient httpClient = new HttpClient();
+            HttpRequestMessage request = new HttpRequestMessage(method, url);
+            request.Content = new StringContent(JsonConvert.SerializeObject(body), Encoding.UTF8, "application/json");
+
+            return await httpClient.SendAsync(request);
         }
     }
 }
