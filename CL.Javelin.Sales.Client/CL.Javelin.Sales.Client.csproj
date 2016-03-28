@@ -7,8 +7,8 @@
     <ProjectGuid>{FBF72070-4C69-4EF2-A4B1-B6900237BD31}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CL.Javeliln.Sales.Client</RootNamespace>
-    <AssemblyName>CL.Javeliln.Sales.Client</AssemblyName>
+    <RootNamespace>CL.Javelin.Sales.Client</RootNamespace>
+    <AssemblyName>CL.Javelin.Sales.Client</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion>10.0.10586.0</TargetPlatformVersion>
@@ -98,10 +98,16 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DesignViewModels\BoardPageDesignViewModel.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\BoardPageViewModel.cs" />
+    <Compile Include="Views\BoardPage.xaml.cs">
+      <DependentUpon>BoardPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NavigationAwarePage.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -129,6 +135,20 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\BoardPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CL.Javelin.Core.Domain\CL.Javelin.Core.Domain.csproj">
+      <Project>{46f53d0d-6df6-4a6b-8f68-b97841725ccd}</Project>
+      <Name>CL.Javelin.Core.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CL.Javelin.Core.Utilities\CL.Javelin.Core.Utilities.csproj">
+      <Project>{9a1cf498-45e6-4ac0-96a4-f0b41b425a5d}</Project>
+      <Name>CL.Javelin.Core.Utilities</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

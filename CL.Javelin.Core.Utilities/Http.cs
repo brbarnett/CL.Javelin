@@ -56,5 +56,22 @@ namespace CL.Javelin.Core.Utilities
 
             return simpleResponse;
         }
+
+        public static async Task<SimpleHttpResponse> Put<TResult>(string url, object body)
+        {
+            HttpClient httpClient = new HttpClient();
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Put, url);
+            request.Content = new StringContent(JsonConvert.SerializeObject(body), Encoding.UTF8, "application/json");
+
+            var response = await httpClient.SendAsync(request);
+
+            var simpleResponse = new SimpleHttpResponse
+            {
+                StatusCode = response.StatusCode,
+                Content = JsonConvert.DeserializeObject<TResult>(await response.Content.ReadAsStringAsync())
+            };
+
+            return simpleResponse;
+        }
     }
 }

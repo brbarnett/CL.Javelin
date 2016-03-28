@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using CL.Javelin.Core.Utilities;
 using Nancy;
 using Nancy.ModelBinding;
+using Nancy.Responses;
 
 namespace CL.Javelin.Sales.Service.Routes.Freight
 {
@@ -22,11 +24,10 @@ namespace CL.Javelin.Sales.Service.Routes.Freight
         {
             Console.WriteLine($"{base.Request.Method}: {base.Request.Url.Path}");
 
-            // post to Store for creation
             IEnumerable<Core.Domain.Freight.Request> requests = 
                 await Http.Get<IEnumerable<Core.Domain.Freight.Request>>("http://127.0.0.1:9000/freight/requests");
 
-            return requests;
+            return base.Response.AsJson(requests);
         }
 
         private async Task<dynamic> CreateFreightRequest(dynamic parameters, CancellationToken ct)
@@ -38,7 +39,7 @@ namespace CL.Javelin.Sales.Service.Routes.Freight
             // post to Store for creation
             var response = await Http.Post<Core.Domain.Freight.Request>("http://127.0.0.1:9000/freight/requests", request);
             
-            return response.Content;
+            return base.Response.AsJson(response.Content);
         }
     }
 }

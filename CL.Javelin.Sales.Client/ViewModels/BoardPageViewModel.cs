@@ -5,7 +5,7 @@ using CL.Javelin.Core.Domain.Freight;
 using Prism.Windows.Mvvm;
 using Prism.Windows.Navigation;
 
-namespace CL.Javelin.Fulfillment.Client.ViewModels
+namespace CL.Javelin.Sales.Client.ViewModels
 {
     public class BoardPageViewModel : ViewModelBase
     {
@@ -25,7 +25,7 @@ namespace CL.Javelin.Fulfillment.Client.ViewModels
 
         private async Task Load()
         {
-            var requests = await Core.Utilities.Http.Get<IEnumerable<Request>>("http://127.0.0.1:9003/freight/requests");
+            var requests = await Core.Utilities.Http.Get<IEnumerable<Request>>("http://127.0.0.1:9001/freight/requests");
             this.Requests = requests.ToList().AsReadOnly();
         }
     }

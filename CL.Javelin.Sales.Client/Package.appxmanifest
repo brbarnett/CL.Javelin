@@ -3,7 +3,7 @@
   <Identity Name="c67fdfd6-8774-40da-b2a2-f0ae0ad57d19" Publisher="CN=BBarnett" Version="1.0.0.0" />
   <mp:PhoneIdentity PhoneProductId="c67fdfd6-8774-40da-b2a2-f0ae0ad57d19" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
-    <DisplayName>CL.Javeliln.Sales.Client</DisplayName>
+    <DisplayName>CL.Javelin.Sales.Client</DisplayName>
     <PublisherDisplayName>BBarnett</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
