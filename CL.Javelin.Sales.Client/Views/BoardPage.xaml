@@ -24,7 +24,15 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
-            <Image Source="../Assets/coyote.jpg" Height="50" Width="50"></Image>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="50"></ColumnDefinition>
+                <ColumnDefinition Width="175"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Image Grid.Column="1" Source="../Assets/coyote.jpg" Height="50" Width="50"></Image>
+            <TextBlock Grid.Column="2" Text="Javelin Sales" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontWeight="Bold"></TextBlock>
         </Grid>
 
         <ListView Grid.Row="1" ItemsSource="{Binding Requests, Mode=OneWay}">

@@ -18,12 +18,21 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"></RowDefinition> <!-- Header -->
-            <RowDefinition Height="*"></RowDefinition> <!-- Content -->
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="100"></RowDefinition>
         </Grid.RowDefinitions>
-        
+
         <Grid Grid.Row="0">
-            <Image Source="../Assets/coyote.jpg" Height="50" Width="50"></Image>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="50"></ColumnDefinition>
+                <ColumnDefinition Width="175"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Image Grid.Column="1" Source="../Assets/coyote.jpg" Height="50" Width="50"></Image>
+            <TextBlock Grid.Column="2" Text="Javelin Fulfillment" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontWeight="Bold"></TextBlock>
         </Grid>
 
         <ListView Grid.Row="1" ItemsSource="{Binding Requests, Mode=OneWay}">
@@ -35,7 +44,7 @@
             </ListView.ItemContainerStyle>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    
+
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition />
@@ -67,7 +76,7 @@
                             <Run Text="{Binding Deadline}"></Run>
                         </TextBlock>
                     </Grid>
-                    
+
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
