@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Threading.Tasks;
 using Windows.UI.Core;
 using CL.Javelin.Core.Domain.Freight;
@@ -42,10 +41,10 @@ namespace CL.Javelin.Fulfillment.Client.ViewModels
             this._eventAggregator.GetEvent<FreightRequestCreated>().Subscribe(async (request) =>
             {
                 await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(
-                    CoreDispatcherPriority.Normal, () =>
-                    {
-                        this.Requests.Add(request);
-                    });
+                        CoreDispatcherPriority.Normal, () =>
+                        {
+                            this.Requests.Add(request);
+                        });
             });
         }
     }
