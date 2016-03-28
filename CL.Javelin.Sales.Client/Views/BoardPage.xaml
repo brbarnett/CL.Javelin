@@ -17,7 +17,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="50"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition Height="200"></RowDefinition>
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
@@ -35,8 +35,8 @@
         <ListView Grid.Row="1" ItemsSource="{Binding Requests, Mode=OneWay}">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
-                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                     <Setter Property="HorizontalAlignment" Value="Stretch" />
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                 </Style>
             </ListView.ItemContainerStyle>
             <ListView.ItemTemplate>
@@ -83,7 +83,88 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="150" />
             </Grid.ColumnDefinitions>
-            
+
+            <Grid
+                Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Customer:" HorizontalAlignment="Right" Margin="5" />
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Origin:" HorizontalAlignment="Right" Margin="5" />
+                    <TextBlock Grid.Row="2" Grid.Column="0" Text="Destination:" HorizontalAlignment="Right" Margin="5" />
+
+                    <TextBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="5" />
+                    <ComboBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="5">
+                        <ComboBoxItem Content="Chicago, IL" />
+                        <ComboBoxItem Content="Dallas, TX" />
+                        <ComboBoxItem Content="Denver, CO" />
+                        <ComboBoxItem Content="Detroit, MI" />
+                        <ComboBoxItem Content="Los Angeles, CA" />
+                        <ComboBoxItem Content="New York, NY" />
+                        <ComboBoxItem Content="Philadelphia, PA" />
+                        <ComboBoxItem Content="Phoenix, AZ" />
+                        <ComboBoxItem Content="San Antonio, TX" />
+                        <ComboBoxItem Content="San Diego, CA" />
+                    </ComboBox>
+                    <ComboBox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="5">
+                        <ComboBoxItem Content="Chicago, IL" />
+                        <ComboBoxItem Content="Dallas, TX" />
+                        <ComboBoxItem Content="Denver, CO" />
+                        <ComboBoxItem Content="Detroit, MI" />
+                        <ComboBoxItem Content="Los Angeles, CA" />
+                        <ComboBoxItem Content="New York, NY" />
+                        <ComboBoxItem Content="Philadelphia, PA" />
+                        <ComboBoxItem Content="Phoenix, AZ" />
+                        <ComboBoxItem Content="San Antonio, TX" />
+                        <ComboBoxItem Content="San Diego, CA" />
+                    </ComboBox>
+                </Grid>
+
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Deadline:" HorizontalAlignment="Right" Margin="5" />
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Open:" HorizontalAlignment="Right" Margin="5"/>
+
+                    <CalendarDatePicker 
+                        Grid.Row="0" 
+                        Grid.Column="1" 
+                        HorizontalAlignment="Stretch" 
+                        VerticalAlignment="Top"
+                        DisplayMode="Month" 
+                         Margin="5" />
+                    <ToggleSwitch 
+                        Grid.Row="1" 
+                        Grid.Column="1" 
+                        VerticalAlignment="Top" 
+                        OnContent="Open" 
+                        OffContent="Closed" 
+                         Margin="5"/>
+                </Grid>
+
+            </Grid>
+
             <Button 
                 Grid.Column="1" 
                 Content="Add New"
