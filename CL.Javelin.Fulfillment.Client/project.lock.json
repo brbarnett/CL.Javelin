@@ -280,6 +280,16 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
+      "Microsoft.Xaml.Behaviors.Uwp.Native/1.0.2": {
+        "compile": {
+          "lib/uap10.0/Microsoft.Xaml.Interactions.winmd": {},
+          "lib/uap10.0/Microsoft.Xaml.Interactivity.winmd": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Microsoft.Xaml.Interactions.winmd": {},
+          "lib/uap10.0/Microsoft.Xaml.Interactivity.winmd": {}
+        }
+      },
       "Newtonsoft.Json/8.0.3": {
         "compile": {
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
@@ -2010,6 +2020,22 @@
         },
         "runtime": {
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
+        }
+      },
+      "Microsoft.Xaml.Behaviors.Uwp.Native/1.0.2": {
+        "compile": {
+          "lib/uap10.0/Microsoft.Xaml.Interactions.winmd": {},
+          "lib/uap10.0/Microsoft.Xaml.Interactivity.winmd": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Microsoft.Xaml.Interactions.winmd": {},
+          "lib/uap10.0/Microsoft.Xaml.Interactivity.winmd": {}
+        },
+        "native": {
+          "runtimes/win10-arm/native/Microsoft.Xaml.Interactions.dll": {},
+          "runtimes/win10-arm/native/Microsoft.Xaml.Interactions.pri": {},
+          "runtimes/win10-arm/native/Microsoft.Xaml.Interactivity.dll": {},
+          "runtimes/win10-arm/native/Microsoft.Xaml.Interactivity.pri": {}
         }
       },
       "Newtonsoft.Json/8.0.3": {
@@ -3775,6 +3801,22 @@
         },
         "runtime": {
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
+        }
+      },
+      "Microsoft.Xaml.Behaviors.Uwp.Native/1.0.2": {
+        "compile": {
+          "lib/uap10.0/Microsoft.Xaml.Interactions.winmd": {},
+          "lib/uap10.0/Microsoft.Xaml.Interactivity.winmd": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Microsoft.Xaml.Interactions.winmd": {},
+          "lib/uap10.0/Microsoft.Xaml.Interactivity.winmd": {}
+        },
+        "native": {
+          "runtimes/win10-arm/native/Microsoft.Xaml.Interactions.dll": {},
+          "runtimes/win10-arm/native/Microsoft.Xaml.Interactions.pri": {},
+          "runtimes/win10-arm/native/Microsoft.Xaml.Interactivity.dll": {},
+          "runtimes/win10-arm/native/Microsoft.Xaml.Interactivity.pri": {}
         }
       },
       "Newtonsoft.Json/8.0.3": {
@@ -5547,6 +5589,22 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
+      "Microsoft.Xaml.Behaviors.Uwp.Native/1.0.2": {
+        "compile": {
+          "lib/uap10.0/Microsoft.Xaml.Interactions.winmd": {},
+          "lib/uap10.0/Microsoft.Xaml.Interactivity.winmd": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Microsoft.Xaml.Interactions.winmd": {},
+          "lib/uap10.0/Microsoft.Xaml.Interactivity.winmd": {}
+        },
+        "native": {
+          "runtimes/win10-x64/native/Microsoft.Xaml.Interactions.dll": {},
+          "runtimes/win10-x64/native/Microsoft.Xaml.Interactions.pri": {},
+          "runtimes/win10-x64/native/Microsoft.Xaml.Interactivity.dll": {},
+          "runtimes/win10-x64/native/Microsoft.Xaml.Interactivity.pri": {}
+        }
+      },
       "Newtonsoft.Json/8.0.3": {
         "compile": {
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
@@ -7310,6 +7368,22 @@
         },
         "runtime": {
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
+        }
+      },
+      "Microsoft.Xaml.Behaviors.Uwp.Native/1.0.2": {
+        "compile": {
+          "lib/uap10.0/Microsoft.Xaml.Interactions.winmd": {},
+          "lib/uap10.0/Microsoft.Xaml.Interactivity.winmd": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Microsoft.Xaml.Interactions.winmd": {},
+          "lib/uap10.0/Microsoft.Xaml.Interactivity.winmd": {}
+        },
+        "native": {
+          "runtimes/win10-x64/native/Microsoft.Xaml.Interactions.dll": {},
+          "runtimes/win10-x64/native/Microsoft.Xaml.Interactions.pri": {},
+          "runtimes/win10-x64/native/Microsoft.Xaml.Interactivity.dll": {},
+          "runtimes/win10-x64/native/Microsoft.Xaml.Interactivity.pri": {}
         }
       },
       "Newtonsoft.Json/8.0.3": {
@@ -9082,6 +9156,22 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
+      "Microsoft.Xaml.Behaviors.Uwp.Native/1.0.2": {
+        "compile": {
+          "lib/uap10.0/Microsoft.Xaml.Interactions.winmd": {},
+          "lib/uap10.0/Microsoft.Xaml.Interactivity.winmd": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Microsoft.Xaml.Interactions.winmd": {},
+          "lib/uap10.0/Microsoft.Xaml.Interactivity.winmd": {}
+        },
+        "native": {
+          "runtimes/win10-x86/native/Microsoft.Xaml.Interactions.dll": {},
+          "runtimes/win10-x86/native/Microsoft.Xaml.Interactions.pri": {},
+          "runtimes/win10-x86/native/Microsoft.Xaml.Interactivity.dll": {},
+          "runtimes/win10-x86/native/Microsoft.Xaml.Interactivity.pri": {}
+        }
+      },
       "Newtonsoft.Json/8.0.3": {
         "compile": {
           "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
@@ -10845,6 +10935,22 @@
         },
         "runtime": {
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
+        }
+      },
+      "Microsoft.Xaml.Behaviors.Uwp.Native/1.0.2": {
+        "compile": {
+          "lib/uap10.0/Microsoft.Xaml.Interactions.winmd": {},
+          "lib/uap10.0/Microsoft.Xaml.Interactivity.winmd": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Microsoft.Xaml.Interactions.winmd": {},
+          "lib/uap10.0/Microsoft.Xaml.Interactivity.winmd": {}
+        },
+        "native": {
+          "runtimes/win10-x86/native/Microsoft.Xaml.Interactions.dll": {},
+          "runtimes/win10-x86/native/Microsoft.Xaml.Interactions.pri": {},
+          "runtimes/win10-x86/native/Microsoft.Xaml.Interactivity.dll": {},
+          "runtimes/win10-x86/native/Microsoft.Xaml.Interactivity.pri": {}
         }
       },
       "Newtonsoft.Json/8.0.3": {
@@ -13208,6 +13314,37 @@
         "ref/net46/Microsoft.Win32.Primitives.dll",
         "ref/xamarinios10/_._",
         "ref/xamarinmac20/_._"
+      ]
+    },
+    "Microsoft.Xaml.Behaviors.Uwp.Native/1.0.2": {
+      "sha512": "KcIdgHXDHzC/1CmtrXG3tUH1OILsVqL4iRCz/o+buAEFYi+S/zL0ur07bgP+Yn5K4MylA4/veLVgVDwEQLQqaQ==",
+      "type": "Package",
+      "files": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "build/native/Microsoft.Xaml.Behaviors.Uwp.Native.targets",
+        "lib/uap10.0/Design/Microsoft.Xaml.Interactions.Design.dll",
+        "lib/uap10.0/Design/Microsoft.Xaml.Interactivity.Design.dll",
+        "lib/uap10.0/en/Microsoft.Xaml.Interactions.xml",
+        "lib/uap10.0/en/Microsoft.Xaml.Interactivity.xml",
+        "lib/uap10.0/Microsoft.Xaml.Interactions.winmd",
+        "lib/uap10.0/Microsoft.Xaml.Interactions.xml",
+        "lib/uap10.0/Microsoft.Xaml.Interactivity.winmd",
+        "lib/uap10.0/Microsoft.Xaml.Interactivity.xml",
+        "Microsoft.Xaml.Behaviors.Uwp.Native.nuspec",
+        "package/services/metadata/core-properties/46f8219cd8ec4b1ab8588771703eb01e.psmdcp",
+        "runtimes/win10-arm/native/Microsoft.Xaml.Interactions.dll",
+        "runtimes/win10-arm/native/Microsoft.Xaml.Interactions.pri",
+        "runtimes/win10-arm/native/Microsoft.Xaml.Interactivity.dll",
+        "runtimes/win10-arm/native/Microsoft.Xaml.Interactivity.pri",
+        "runtimes/win10-x64/native/Microsoft.Xaml.Interactions.dll",
+        "runtimes/win10-x64/native/Microsoft.Xaml.Interactions.pri",
+        "runtimes/win10-x64/native/Microsoft.Xaml.Interactivity.dll",
+        "runtimes/win10-x64/native/Microsoft.Xaml.Interactivity.pri",
+        "runtimes/win10-x86/native/Microsoft.Xaml.Interactions.dll",
+        "runtimes/win10-x86/native/Microsoft.Xaml.Interactions.pri",
+        "runtimes/win10-x86/native/Microsoft.Xaml.Interactivity.dll",
+        "runtimes/win10-x86/native/Microsoft.Xaml.Interactivity.pri"
       ]
     },
     "Newtonsoft.Json/8.0.3": {
@@ -16021,6 +16158,7 @@
       "Microsoft.ApplicationInsights.WindowsApps >= 1.0.0",
       "Microsoft.AspNet.SignalR.Client >= 2.2.0",
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.0.0",
+      "Microsoft.Xaml.Behaviors.Uwp.Native >= 1.0.2",
       "Prism.Unity >= 6.2.0-pre3",
       "Prism.Windows >= 6.0.2-pre1",
       "Unity >= 4.0.1"

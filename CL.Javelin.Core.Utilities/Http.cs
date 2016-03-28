@@ -61,6 +61,19 @@ namespace CL.Javelin.Core.Utilities
             return simpleResponse;
         }
 
+        public static async Task<SimpleHttpResponse> Put(string url, object body)
+        {
+            var response = await SendRequest(HttpMethod.Put, url, body);
+
+            var simpleResponse = new SimpleHttpResponse
+            {
+                StatusCode = response.StatusCode,
+                Content = null
+            };
+
+            return simpleResponse;
+        }
+
         private static async Task<HttpResponseMessage> SendRequest(HttpMethod method, string url, object body)
         {
             HttpClient httpClient = new HttpClient();

@@ -4,20 +4,28 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="using:CL.Javelin.Fulfillment.Client.Views"
+    xmlns:converters="using:CL.Javelin.Fulfillment.Client.Converters"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:prismMvvm="using:Prism.Windows.Mvvm"
     xmlns:views="using:CL.Javelin.Fulfillment.Client.Views"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:media="using:Microsoft.Xaml.Interactions.Media"
     x:Uid="Page"
     x:Name="pageRoot"
     IsTabStop="false"
     prismMvvm:ViewModelLocator.AutoWireViewModel="True"
     mc:Ignorable="d">
 
+    <local:NavigationAwarePage.Resources>
+        <converters:InvertBooleanConverter x:Key="InvertBooleanConverter" />
+    </local:NavigationAwarePage.Resources>
+    
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="50"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition Height="200"></RowDefinition>
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
@@ -32,7 +40,16 @@
             <TextBlock Grid.Column="2" Text="Javelin Fulfillment" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontWeight="Bold"></TextBlock>
         </Grid>
 
-        <ListView Grid.Row="1" ItemsSource="{Binding Requests, Mode=OneWay}">
+        <ListView 
+            Grid.Row="1" 
+            x:Name="RequestBoard"
+            ItemsSource="{Binding Requests}"
+            SelectedItem="{Binding SelectedRequest, Mode=TwoWay}">
+            <interactivity:Interaction.Behaviors>
+                <core:EventTriggerBehavior EventName="SelectionChanged">
+                    <core:InvokeCommandAction Command="{Binding ChangeSelectedRequestCommand}" CommandParameter="{Binding ElementName=RequestBoard, Path=SelectedItem}" />
+                </core:EventTriggerBehavior>
+            </interactivity:Interaction.Behaviors>
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -51,32 +68,44 @@
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
-                        <TextBlock Grid.Row="0" Grid.Column="0">
+                        <TextBlock Grid.Column="0">
                             <Run Text="Customer:"></Run>
                             <Run Text="{Binding Customer}"></Run>
                         </TextBlock>
 
-                        <TextBlock Grid.Row="0" Grid.Column="1">
+                        <TextBlock Grid.Column="1">
                             <Run Text="Origin:"></Run>
                             <Run Text="{Binding Origin}"></Run>
                         </TextBlock>
 
-                        <TextBlock Grid.Row="0" Grid.Column="2">
+                        <TextBlock Grid.Column="2">
                             <Run Text="Destination:"></Run>
                             <Run Text="{Binding Destination}"></Run>
                         </TextBlock>
 
-                        <TextBlock Grid.Row="0" Grid.Column="3">
+                        <TextBlock Grid.Column="3">
                             <Run Text="Deadline:"></Run>
                             <Run Text="{Binding Deadline}"></Run>
+                        </TextBlock>
+
+                        <TextBlock Grid.Column="4">
+                            <Run Text="Fulfilled:"></Run>
+                            <Run Text="{Binding Path=Open, Converter={StaticResource InvertBooleanConverter}}"></Run>
                         </TextBlock>
                     </Grid>
 
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+
+        <StackPanel Grid.Row="2">
+            <TextBlock Text="{Binding SelectedRequest.Origin}"></TextBlock>
+            <Button Content="Mark Fulfilled" Command="{Binding ToggleSelectedRequestOpenCommand}" />
+        </StackPanel>
+        
     </Grid>
 </local:NavigationAwarePage>
 
