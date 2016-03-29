@@ -106,7 +106,7 @@
 
             <Grid
                 Grid.Column="0"
-                DataContext="{Binding NewRequest}">
+                DataContext="{Binding SelectedRequest}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
