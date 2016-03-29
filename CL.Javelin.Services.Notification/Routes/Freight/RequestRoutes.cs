@@ -50,7 +50,7 @@ namespace CL.Javelin.Services.Notification.Routes.Freight
 
             var request = this.Bind<Core.Domain.Freight.Request>();
 
-            this._notificationHubContext.Clients.All.FreightRequestDeleted("Deleted", request);
+            this._notificationHubContext.Clients.All.FreightRequestDeleted(request);
 
             return base.Response.AsJson(new { Success = true });
         }

@@ -16,6 +16,7 @@ namespace CL.Javelin.Services.Fulfillment.Routes.Freight
         {
             base.Get[$"{BaseUrl}"] = this.GetFreightRequests;
             base.Put[$"{BaseUrl}"] = this.UpdateFreightRequest;
+            base.Delete[$"{BaseUrl}/{{id}}"] = this.DeleteFreightRequest;
         }
 
         private async Task<dynamic> GetFreightRequests(dynamic parameters, CancellationToken ct)
@@ -37,6 +38,18 @@ namespace CL.Javelin.Services.Fulfillment.Routes.Freight
 
             // post to Store for creation
             var response = await Http.Put<Core.Domain.Freight.Request>("http://127.0.0.1:9000/freight/requests", request);
+
+            return base.Response.AsJson(response.Content);
+        }
+
+        private async Task<dynamic> DeleteFreightRequest(dynamic parameters, CancellationToken ct)
+        {
+            Console.WriteLine($"{base.Request.Method}: {base.Request.Url.Path}");
+
+            string id = parameters.id;
+
+            // post to Store for creation
+            var response = await Http.Delete($"http://127.0.0.1:9000/freight/requests/{id}");
 
             return base.Response.AsJson(response.Content);
         }

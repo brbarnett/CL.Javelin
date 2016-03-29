@@ -22,6 +22,19 @@ namespace CL.Javelin.Core.Utilities
             return JsonConvert.DeserializeObject<TResult>(data);
         }
 
+        public static async Task<SimpleHttpResponse> Delete(string url)
+        {
+            var response = await SendRequest(HttpMethod.Delete, url, null);
+
+            var simpleResponse = new SimpleHttpResponse
+            {
+                StatusCode = response.StatusCode,
+                Content = null
+            };
+
+            return simpleResponse;
+        }
+
         public static async Task<SimpleHttpResponse> Post<TResult>(string url, object body)
         {
             var response = await SendRequest(HttpMethod.Post, url, body);
@@ -78,7 +91,9 @@ namespace CL.Javelin.Core.Utilities
         {
             HttpClient httpClient = new HttpClient();
             HttpRequestMessage request = new HttpRequestMessage(method, url);
-            request.Content = new StringContent(JsonConvert.SerializeObject(body), Encoding.UTF8, "application/json");
+
+            if(body != null)
+                request.Content = new StringContent(JsonConvert.SerializeObject(body), Encoding.UTF8, "application/json");
 
             return await httpClient.SendAsync(request);
         }

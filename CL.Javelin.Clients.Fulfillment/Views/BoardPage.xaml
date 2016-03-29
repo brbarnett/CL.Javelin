@@ -168,13 +168,11 @@
 
             </Grid>
 
-            <Button 
-                Grid.Column="2" 
-                Content="Toggle"
-                Command="{Binding ToggleSelectedRequestOpenCommand}"
-                HorizontalAlignment="Center" 
-                VerticalAlignment="Top" 
-                Margin="10" />
+            <StackPanel 
+                Grid.Column="2">
+                <Button Content="Toggle Fulfilled" Command="{Binding ToggleSelectedRequestOpenCommand}" HorizontalAlignment="Stretch" Margin="10" />
+                <Button Content="Delete" Command="{Binding DeleteSelectedRequestCommand}" HorizontalAlignment="Stretch" Margin="10" />
+            </StackPanel>
         </Grid>
     </Grid>
 </shared:NavigationAwarePage>

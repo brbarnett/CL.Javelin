@@ -47,6 +47,8 @@ namespace CL.Javelin.Clients.Fulfillment.ViewModels
 
         public DelegateCommand ToggleSelectedRequestOpenCommand { get; private set; }
 
+        public DelegateCommand DeleteSelectedRequestCommand { get; private set; }
+
         public BoardPageViewModel(IEventAggregator eventAggregator)
         {
             if (eventAggregator == null) throw new ArgumentNullException(nameof(eventAggregator));
@@ -57,9 +59,10 @@ namespace CL.Javelin.Clients.Fulfillment.ViewModels
                 this.SelectedRequest.SetRequest(request);            
             });
 
-            this.ToggleSelectedRequestOpenCommand = new DelegateCommand(this.ToggleSelectedRequestOpen, this.CanToggleSelectedRequestOpen);
+            this.ToggleSelectedRequestOpenCommand = new DelegateCommand(this.ToggleSelectedRequestOpen, this.CanOperateOnRequest);
+            this.DeleteSelectedRequestCommand = new DelegateCommand(this.DeleteSelectedRequest, this.CanOperateOnRequest);
 
-            this.SelectedRequest = new RequestFormViewModel(new[] { this.ToggleSelectedRequestOpenCommand });
+            this.SelectedRequest = new RequestFormViewModel(new[] { this.ToggleSelectedRequestOpenCommand, this.DeleteSelectedRequestCommand });
         }
 
         private async void ToggleSelectedRequestOpen()
@@ -73,7 +76,18 @@ namespace CL.Javelin.Clients.Fulfillment.ViewModels
             this.SelectedRequest.Reset();
         }
 
-        private bool CanToggleSelectedRequestOpen()
+        private async void DeleteSelectedRequest()
+        {
+            if (!this.SelectedRequest.IsValid()) return;
+
+            this.SelectedRequest.Open = !this.SelectedRequest.Open;
+
+            await Core.Utilities.Http.Delete($"http://127.0.0.1:9003/freight/requests/{this.SelectedRequest.GetRequest().Id}");
+
+            this.SelectedRequest.Reset();
+        }
+
+        private bool CanOperateOnRequest()
         {
             return this.SelectedRequest.IsValid();
         }
