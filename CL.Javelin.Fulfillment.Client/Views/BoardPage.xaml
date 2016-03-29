@@ -10,7 +10,6 @@
     xmlns:views="using:CL.Javelin.Fulfillment.Client.Views"
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
-    xmlns:media="using:Microsoft.Xaml.Interactions.Media"
     x:Uid="Page"
     x:Name="pageRoot"
     IsTabStop="false"

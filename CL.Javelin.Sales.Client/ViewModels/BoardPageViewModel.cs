@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.UI.Core;
+using Windows.UI.Xaml.Controls;
 using CL.Javelin.Core.Domain.Freight;
 using CL.Javelin.Sales.Client.Events.Freight.Request;
 using Prism.Commands;
@@ -26,29 +27,117 @@ namespace CL.Javelin.Sales.Client.ViewModels
             private set { base.SetProperty(ref this._requests, value); }
         }
 
-        public ICommand AddFreightRequestCommand
+        private Request _newRequest = new Request();
+
+        public Request NewRequest
         {
-            get
+            get { return this._newRequest; }
+            private set
             {
-                return new DelegateCommand(async () =>
-                {
-                    await
-                        Core.Utilities.Http.Post("http://127.0.0.1:9001/freight/requests",
-                            new Request
-                            {
-                                Customer = "New Customer",
-                                Origin = "Houston, TX",
-                                Destination = "San Francisco, CA",
-                                Deadline = new DateTime(2016, 04, 06)
-                            });
-                });
+                base.SetProperty(ref this._newRequest, value);
+                this.AddFreightRequestCommand.RaiseCanExecuteChanged();
             }
         }
+
+        public string Customer
+        {
+            get { return this._newRequest.Customer; }
+            set
+            {
+                this._newRequest.Customer = value;
+                this.AddFreightRequestCommand.RaiseCanExecuteChanged();
+            }
+        }
+
+        public ComboBoxItem Origin
+        {
+            set
+            {
+                if (value.Content == null) return;
+
+                this._newRequest.Origin = value.Content.ToString();
+                this.AddFreightRequestCommand.RaiseCanExecuteChanged();
+            }
+        }
+
+        public ComboBoxItem Destination
+        {
+            set
+            {
+                if (value.Content == null) return;
+
+                this._newRequest.Destination = value.Content.ToString();
+                this.AddFreightRequestCommand.RaiseCanExecuteChanged();
+            }
+        }
+
+        public DateTime Deadline
+        {
+            get { return this._newRequest.Deadline; }
+            set
+            {
+                this._newRequest.Deadline = value;
+                this.AddFreightRequestCommand.RaiseCanExecuteChanged();
+            }
+        }
+
+        public bool Open
+        {
+            get { return this._newRequest.Open; }
+            set
+            {
+                this._newRequest.Open = value;
+                this.AddFreightRequestCommand.RaiseCanExecuteChanged();
+            }
+        }
+
+        public DateTime Today { get; } = DateTime.Today.Date;
+
+        public ObservableCollection<ComboBoxItem> OriginLocations { get; private set; } = new ObservableCollection<ComboBoxItem>();
+        public ObservableCollection<ComboBoxItem> DestinationLocations { get; private set; } = new ObservableCollection<ComboBoxItem>();
+
+        public DelegateCommand AddFreightRequestCommand { get; private set; }
 
         public BoardPageViewModel(IEventAggregator eventAggregator)
         {
             if (eventAggregator == null) throw new ArgumentNullException(nameof(eventAggregator));
             this._eventAggregator = eventAggregator;
+
+            this.AddFreightRequestCommand = new DelegateCommand(async () =>
+            {
+                await Core.Utilities.Http.Post("http://127.0.0.1:9001/freight/requests", this.NewRequest);
+                this.NewRequest = new Request();
+            }, () =>
+            {
+                if (this.NewRequest == null) return false;
+                if (String.IsNullOrEmpty(this.NewRequest.Customer)) return false;
+                if (String.IsNullOrEmpty(this.NewRequest.Origin)) return false;
+                if (String.IsNullOrEmpty(this.NewRequest.Destination)) return false;
+                
+                return true;
+            });
+
+            // origin
+            this.OriginLocations.Add(new ComboBoxItem { Content = "Chicago, IL" });
+            this.OriginLocations.Add(new ComboBoxItem { Content = "Dallas, TX" });
+            this.OriginLocations.Add(new ComboBoxItem { Content = "Denver, CO" });
+            this.OriginLocations.Add(new ComboBoxItem { Content = "Los Angeles, CA" });
+            this.OriginLocations.Add(new ComboBoxItem { Content = "New York, NY" });
+            this.OriginLocations.Add(new ComboBoxItem { Content = "Philadelphia, PA" });
+            this.OriginLocations.Add(new ComboBoxItem { Content = "Phoenix, AZ" });
+            this.OriginLocations.Add(new ComboBoxItem { Content = "San Antonio, TX" });
+            this.OriginLocations.Add(new ComboBoxItem { Content = "San Diego, CA" });
+
+            // destination
+            this.DestinationLocations.Add(new ComboBoxItem { Content = "Chicago, IL" });
+            this.DestinationLocations.Add(new ComboBoxItem { Content = "Dallas, TX" });
+            this.DestinationLocations.Add(new ComboBoxItem { Content = "Denver, CO" });
+            this.DestinationLocations.Add(new ComboBoxItem { Content = "Los Angeles, CA" });
+            this.DestinationLocations.Add(new ComboBoxItem { Content = "New York, NY" });
+            this.DestinationLocations.Add(new ComboBoxItem { Content = "Philadelphia, PA" });
+            this.DestinationLocations.Add(new ComboBoxItem { Content = "Phoenix, AZ" });
+            this.DestinationLocations.Add(new ComboBoxItem { Content = "San Antonio, TX" });
+            this.DestinationLocations.Add(new ComboBoxItem { Content = "San Diego, CA" });
         }
 
         public override async void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)

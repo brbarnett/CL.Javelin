@@ -7,11 +7,18 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:prismMvvm="using:Prism.Windows.Mvvm"
     xmlns:views="using:CL.Javelin.Sales.Client.Views"
+    xmlns:converters="using:CL.Javelin.Sales.Client.Converters"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     x:Uid="Page"
     x:Name="pageRoot"
     IsTabStop="false"
     prismMvvm:ViewModelLocator.AutoWireViewModel="True"
     mc:Ignorable="d">
+
+    <local:NavigationAwarePage.Resources>
+        <converters:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
+    </local:NavigationAwarePage.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
@@ -106,31 +113,25 @@
                     <TextBlock Grid.Row="1" Grid.Column="0" Text="Origin:" HorizontalAlignment="Right" Margin="5" />
                     <TextBlock Grid.Row="2" Grid.Column="0" Text="Destination:" HorizontalAlignment="Right" Margin="5" />
 
-                    <TextBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="5" />
-                    <ComboBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="5">
-                        <ComboBoxItem Content="Chicago, IL" />
-                        <ComboBoxItem Content="Dallas, TX" />
-                        <ComboBoxItem Content="Denver, CO" />
-                        <ComboBoxItem Content="Detroit, MI" />
-                        <ComboBoxItem Content="Los Angeles, CA" />
-                        <ComboBoxItem Content="New York, NY" />
-                        <ComboBoxItem Content="Philadelphia, PA" />
-                        <ComboBoxItem Content="Phoenix, AZ" />
-                        <ComboBoxItem Content="San Antonio, TX" />
-                        <ComboBoxItem Content="San Diego, CA" />
-                    </ComboBox>
-                    <ComboBox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="5">
-                        <ComboBoxItem Content="Chicago, IL" />
-                        <ComboBoxItem Content="Dallas, TX" />
-                        <ComboBoxItem Content="Denver, CO" />
-                        <ComboBoxItem Content="Detroit, MI" />
-                        <ComboBoxItem Content="Los Angeles, CA" />
-                        <ComboBoxItem Content="New York, NY" />
-                        <ComboBoxItem Content="Philadelphia, PA" />
-                        <ComboBoxItem Content="Phoenix, AZ" />
-                        <ComboBoxItem Content="San Antonio, TX" />
-                        <ComboBoxItem Content="San Diego, CA" />
-                    </ComboBox>
+                    <TextBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="5" Text="{Binding Customer, Mode=TwoWay}" />
+                    <ComboBox 
+                        Grid.Row="1" 
+                        Grid.Column="1" 
+                        HorizontalAlignment="Stretch" 
+                        VerticalAlignment="Top" 
+                        Margin="5" 
+                        PlaceholderText="Please choose a city" 
+                        ItemsSource="{Binding OriginLocations}"
+                        SelectedItem="{Binding Origin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <ComboBox 
+                        Grid.Row="2" 
+                        Grid.Column="1" 
+                        HorizontalAlignment="Stretch" 
+                        VerticalAlignment="Top" 
+                        Margin="5" 
+                        PlaceholderText="Please choose a city" 
+                        ItemsSource="{Binding DestinationLocations}"
+                        SelectedItem="{Binding Destination, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                 </Grid>
 
                 <Grid Grid.Column="1">
@@ -152,15 +153,19 @@
                         Grid.Column="1" 
                         HorizontalAlignment="Stretch" 
                         VerticalAlignment="Top"
-                        DisplayMode="Month" 
-                         Margin="5" />
+                         Margin="5" 
+                         DisplayMode="Month"
+                         IsTodayHighlighted="True"
+                        MinDate="{Binding Today, Mode=OneWay, Converter={StaticResource DateTimeToDateTimeOffsetConverter}}"
+                         Date="{Binding Deadline, Mode=TwoWay, Converter={StaticResource DateTimeToDateTimeOffsetConverter}}"/>
                     <ToggleSwitch 
                         Grid.Row="1" 
                         Grid.Column="1" 
                         VerticalAlignment="Top" 
                         OnContent="Open" 
                         OffContent="Closed" 
-                         Margin="5"/>
+                         Margin="5"
+                         IsOn="{Binding Open, Mode=TwoWay}"/>
                 </Grid>
 
             </Grid>
