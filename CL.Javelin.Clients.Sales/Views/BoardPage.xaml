@@ -15,6 +15,7 @@
 
     <shared:NavigationAwarePage.Resources>
         <converters:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
+        <converters:InvertBooleanConverter x:Key="InvertBooleanConverter" />
     </shared:NavigationAwarePage.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -47,34 +48,37 @@
                 <DataTemplate>
 
                     <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition />
-                        </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
-                        <TextBlock Grid.Row="0" Grid.Column="0">
+                        <TextBlock Grid.Column="0">
                             <Run Text="Customer:"></Run>
                             <Run Text="{Binding Customer}"></Run>
                         </TextBlock>
 
-                        <TextBlock Grid.Row="0" Grid.Column="1">
+                        <TextBlock Grid.Column="1">
                             <Run Text="Origin:"></Run>
                             <Run Text="{Binding Origin}"></Run>
                         </TextBlock>
 
-                        <TextBlock Grid.Row="0" Grid.Column="2">
+                        <TextBlock Grid.Column="2">
                             <Run Text="Destination:"></Run>
                             <Run Text="{Binding Destination}"></Run>
                         </TextBlock>
 
-                        <TextBlock Grid.Row="0" Grid.Column="3">
+                        <TextBlock Grid.Column="3">
                             <Run Text="Deadline:"></Run>
                             <Run Text="{Binding Deadline}"></Run>
+                        </TextBlock>
+
+                        <TextBlock Grid.Column="4">
+                            <Run Text="Fulfilled:"></Run>
+                            <Run Text="{Binding Path=Open, Converter={StaticResource InvertBooleanConverter}}"></Run>
                         </TextBlock>
                     </Grid>
 
