@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Azure.Documents;
+using Microsoft.Azure.Documents.Client;
+using Microsoft.Azure.Documents.Linq;
 using Nancy;
 using Nancy.ModelBinding;
 using Nancy.Responses;
@@ -14,32 +17,15 @@ namespace CL.Javelin.Services.Store.Routes.Freight
     public class RequestRoutes : NancyModule
     {
         private const string BaseUrl = "/freight/requests";
+        private const string DbPath = "dbs/Javelin/colls/FreightRequests";
 
-        // mock data
-        private List<Core.Domain.Freight.Request> _requests = new List<Core.Domain.Freight.Request>
-            {
-                new Core.Domain.Freight.Request
-                {
-                    Id = new Guid("53008bea-7743-4af3-9fb2-b8f0516650ab"),
-                    Customer = "Coca Cola",
-                    Origin = "Atlanta, GA",
-                    Destination = "Chicago, IL",
-                    Deadline = new DateTime(2016, 4, 1),
-                    Open = true
-                },
-                new Core.Domain.Freight.Request
-                {
-                    Id = new Guid("d57d1e30-6720-469d-8f99-06e6a3ddc356"),
-                    Customer = "McDonalds",
-                    Origin = "Oakbrook, IL",
-                    Destination = "Detroit, MI",
-                    Deadline = new DateTime(2016, 4, 2),
-                    Open = true
-                }
-            };
+        private readonly DocumentClient _dbClient;
 
-        public RequestRoutes()
+        public RequestRoutes(DocumentClient dbClient)
         {
+            if (dbClient == null) throw new ArgumentNullException(nameof(dbClient));
+            this._dbClient = dbClient;
+
             base.Get[$"{BaseUrl}"] = this.GetAll;
             base.Get[$"{BaseUrl}/open"] = this.GetAllOpen;
             base.Get[$"{BaseUrl}/{{id}}"] = this.Get;
@@ -48,18 +34,27 @@ namespace CL.Javelin.Services.Store.Routes.Freight
             base.Delete[$"{BaseUrl}/{{id}}"] = this.Delete;
         }
 
-        private async Task<dynamic> GetAll(dynamic paramters, CancellationToken ct)
+        private async Task<dynamic> GetAll(dynamic parameters, CancellationToken ct)
         {
             Console.WriteLine($"{base.Request.Method}: {base.Request.Url.Path}");
 
-            return base.Response.AsJson(this._requests);
+            IEnumerable<Core.Domain.Freight.Request> freightRequests = this._dbClient
+                .CreateDocumentQuery<Core.Domain.Freight.Request>(DbPath)
+                .AsEnumerable();
+
+            return base.Response.AsJson(freightRequests);
         }
 
-        private async Task<dynamic> GetAllOpen(dynamic paramters, CancellationToken ct)
+        private async Task<dynamic> GetAllOpen(dynamic parameters, CancellationToken ct)
         {
             Console.WriteLine($"{base.Request.Method}: {base.Request.Url.Path}");
 
-            return base.Response.AsJson(this._requests.Where(x => x.Open));
+            IEnumerable<Core.Domain.Freight.Request> freightRequests = this._dbClient
+                .CreateDocumentQuery<Core.Domain.Freight.Request>(DbPath)
+                .Where(x => x.Open)
+                .AsEnumerable();
+
+            return base.Response.AsJson(freightRequests);
         }
 
         private new async Task<dynamic> Get(dynamic parameters, CancellationToken ct)
@@ -68,7 +63,13 @@ namespace CL.Javelin.Services.Store.Routes.Freight
 
             Guid id = parameters.id;
 
-            return base.Response.AsJson(this._requests.SingleOrDefault(x => x.Id == id));
+            Core.Domain.Freight.Request freightRequest = this._dbClient
+                .CreateDocumentQuery<Core.Domain.Freight.Request>(DbPath)
+                .Where(x => x.Id == id)
+                .AsEnumerable()
+                .FirstOrDefault();
+
+            return base.Response.AsJson(freightRequest);
         }
 
         private async Task<dynamic> Create(dynamic parameters, CancellationToken ct)
@@ -77,12 +78,11 @@ namespace CL.Javelin.Services.Store.Routes.Freight
 
             var request = this.Bind<Core.Domain.Freight.Request>();
             request.Id = Guid.NewGuid();
-            this._requests.Add(request);
 
-            Console.WriteLine(JsonConvert.SerializeObject(request));
+            Document document = await this._dbClient.CreateDocumentAsync(DbPath, request);
 
             // created, now notify
-            await Core.Utilities.Http.Post("http://127.0.0.1:9002/freight/requests/created", request);
+            await Core.Utilities.Http.Post($"{Constants.Services.Notification.BaseEndpointUrl}/freight/requests/created", request);
 
             return new TextResponse(Nancy.HttpStatusCode.OK, JsonConvert.SerializeObject(request), Encoding.UTF8);
         }
@@ -93,11 +93,10 @@ namespace CL.Javelin.Services.Store.Routes.Freight
 
             var request = this.Bind<Core.Domain.Freight.Request>();
 
-            var existingRequest = this._requests.SingleOrDefault(x => x.Id == request.Id);
-            existingRequest = request;
+            Document document = await this._dbClient.UpsertDocumentAsync(DbPath, request);
 
             // created, now notify
-            await Core.Utilities.Http.Post("http://127.0.0.1:9002/freight/requests/updated", request);
+            await Core.Utilities.Http.Post($"{Constants.Services.Notification.BaseEndpointUrl}/freight/requests/updated", request);
 
             return new TextResponse(Nancy.HttpStatusCode.OK, JsonConvert.SerializeObject(request), Encoding.UTF8);
         }
@@ -108,11 +107,18 @@ namespace CL.Javelin.Services.Store.Routes.Freight
 
             Guid id = parameters.id;
 
-            var request = this._requests.SingleOrDefault(x => x.Id == id);
-            this._requests.Remove(request);
+            Document freightRequest = this._dbClient
+                .CreateDocumentQuery(DbPath)
+                .Where(x => x.Id == id.ToString())
+                .AsEnumerable()
+                .FirstOrDefault();
+
+            if (freightRequest == null) return new TextResponse(Nancy.HttpStatusCode.NotFound);
+
+            await this._dbClient.DeleteDocumentAsync(freightRequest.SelfLink);
 
             // created, now notify
-            await Core.Utilities.Http.Post("http://127.0.0.1:9002/freight/requests/deleted", request);
+            await Core.Utilities.Http.Post($"{Constants.Services.Notification.BaseEndpointUrl}/freight/requests/deleted", freightRequest);
 
             return new TextResponse(Nancy.HttpStatusCode.OK, JsonConvert.SerializeObject(new { Id = id }), Encoding.UTF8);
         }

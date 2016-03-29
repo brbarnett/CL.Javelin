@@ -1,9 +1,11 @@
 ﻿using System;
+using Newtonsoft.Json;
 
 namespace CL.Javelin.Core.Domain.Freight
 {
     public class Request
     {
+        [JsonProperty(PropertyName = "id")]
         public Guid Id { get; set; }
 
         public string Customer { get; set; }
