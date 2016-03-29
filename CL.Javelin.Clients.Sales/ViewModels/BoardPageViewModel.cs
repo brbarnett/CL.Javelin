@@ -37,7 +37,7 @@ namespace CL.Javelin.Clients.Sales.ViewModels
 
             this.AddFreightRequestCommand = new DelegateCommand(async () =>
             {
-                await Core.Utilities.Http.Post("http://127.0.0.1:9001/freight/requests", this.NewRequest.Request);
+                await Core.Utilities.Http.Post("http://127.0.0.1:9001/freight/requests", this.NewRequest.GetRequest());
                 this.NewRequest.Reset();
             }, () =>
             {

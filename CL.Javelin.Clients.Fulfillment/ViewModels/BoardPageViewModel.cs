@@ -7,6 +7,7 @@ using System.Windows.Input;
 using Windows.UI.Core;
 using CL.Javelin.Clients.Shared.Behaviors;
 using CL.Javelin.Clients.Shared.Events.Freight.Request;
+using CL.Javelin.Clients.Shared.ViewModels;
 using CL.Javelin.Core.Domain.Freight;
 using Prism.Commands;
 using Prism.Events;
@@ -27,15 +28,18 @@ namespace CL.Javelin.Clients.Fulfillment.ViewModels
             private set { base.SetProperty(ref this._requests, value); }
         }
 
-        private Request _selectedRequest;
+        private RequestFormViewModel _requestFormViewModel;
 
-        public Request SelectedRequest
+        public RequestFormViewModel SelectedRequest
         {
-            get { return this._selectedRequest; }
-            private set
+            get
             {
-                base.SetProperty(ref this._selectedRequest, value);
-                this.ToggleSelectedRequestOpenCommand.RaiseCanExecuteChanged();
+                return this._requestFormViewModel;
+            }
+            set
+            {
+                if (value == null) return;
+                this._requestFormViewModel = value;
             }
         }
 
@@ -50,17 +54,28 @@ namespace CL.Javelin.Clients.Fulfillment.ViewModels
 
             this.ChangeSelectedRequestCommand = new ActionCommand<Request>(request =>
             {
-                this.SelectedRequest = request;                
+                this.SelectedRequest.SetRequest(request);            
             });
 
-            this.ToggleSelectedRequestOpenCommand = new DelegateCommand(async () =>
-            {
-                if (this.SelectedRequest == null) return;
+            this.ToggleSelectedRequestOpenCommand = new DelegateCommand(this.ToggleSelectedRequestOpen, this.CanToggleSelectedRequestOpen);
 
-                this.SelectedRequest.Open = !this.SelectedRequest.Open;
+            this.SelectedRequest = new RequestFormViewModel(new[] { this.ToggleSelectedRequestOpenCommand });
+        }
 
-                await Core.Utilities.Http.Put("http://127.0.0.1:9003/freight/requests", this.SelectedRequest);
-            }, () => this.SelectedRequest != null);
+        private async void ToggleSelectedRequestOpen()
+        {
+            if (!this.SelectedRequest.IsValid()) return;
+
+            this.SelectedRequest.Open = !this.SelectedRequest.Open;
+
+            await Core.Utilities.Http.Put("http://127.0.0.1:9003/freight/requests", this.SelectedRequest.GetRequest());
+
+            this.SelectedRequest.Reset();
+        }
+
+        private bool CanToggleSelectedRequestOpen()
+        {
+            return this.SelectedRequest.IsValid();
         }
 
         public override async void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)

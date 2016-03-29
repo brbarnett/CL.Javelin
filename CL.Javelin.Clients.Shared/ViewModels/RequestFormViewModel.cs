@@ -11,10 +11,10 @@ namespace CL.Javelin.Clients.Shared.ViewModels
     {
         private Request _request = new Request();
 
-        public Request Request
+        private Request Request
         {
             get { return this._request; }
-            private set
+            set
             {
                 base.SetProperty(ref this._request, value);
                 this.NotifyCommands();
@@ -134,6 +134,16 @@ namespace CL.Javelin.Clients.Shared.ViewModels
         public void Reset()
         {
             this.Request = new Request();
+        }
+
+        public void SetRequest(Request request)
+        {
+            this.Request = request;
+        }
+
+        public Request GetRequest()
+        {
+            return this.Request;
         }
     }
 }

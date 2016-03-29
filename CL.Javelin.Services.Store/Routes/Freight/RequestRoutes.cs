@@ -84,7 +84,7 @@ namespace CL.Javelin.Services.Store.Routes.Freight
             // created, now notify
             await Core.Utilities.Http.Post("http://127.0.0.1:9002/freight/requests/created", request);
 
-            return new TextResponse(Nancy.HttpStatusCode.Accepted, JsonConvert.SerializeObject(request), Encoding.UTF8);
+            return new TextResponse(Nancy.HttpStatusCode.OK, JsonConvert.SerializeObject(request), Encoding.UTF8);
         }
 
         private async Task<dynamic> Update(dynamic parameters, CancellationToken ct)
@@ -99,7 +99,7 @@ namespace CL.Javelin.Services.Store.Routes.Freight
             // created, now notify
             await Core.Utilities.Http.Post("http://127.0.0.1:9002/freight/requests/updated", request);
 
-            return request;
+            return new TextResponse(Nancy.HttpStatusCode.OK, JsonConvert.SerializeObject(request), Encoding.UTF8);
         }
 
         private new async Task<dynamic> Delete(dynamic parameters, CancellationToken ct)
@@ -114,7 +114,7 @@ namespace CL.Javelin.Services.Store.Routes.Freight
             // created, now notify
             await Core.Utilities.Http.Post("http://127.0.0.1:9002/freight/requests/deleted", request);
 
-            return base.Response.AsJson(new {Id = id});
+            return new TextResponse(Nancy.HttpStatusCode.OK, JsonConvert.SerializeObject(new { Id = id }), Encoding.UTF8);
         }
     }
 }
