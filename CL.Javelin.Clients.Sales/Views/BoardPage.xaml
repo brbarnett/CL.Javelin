@@ -88,7 +88,8 @@
 
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="8*" />
+                <ColumnDefinition Width="2*" />
                 <ColumnDefinition Width="150" />
             </Grid.ColumnDefinitions>
 
@@ -102,78 +103,62 @@
 
                 <Grid Grid.Column="0">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="50" />
-                        <RowDefinition Height="50" />
-                        <RowDefinition Height="50" />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
                     </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition />
-                    </Grid.ColumnDefinitions>
 
-                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Customer:" HorizontalAlignment="Right" Margin="5" />
-                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Origin:" HorizontalAlignment="Right" Margin="5" />
-                    <TextBlock Grid.Row="2" Grid.Column="0" Text="Destination:" HorizontalAlignment="Right" Margin="5" />
-
-                    <TextBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="5" Text="{Binding Customer, Mode=TwoWay}" />
-                    <ComboBox 
-                        Grid.Row="1" 
-                        Grid.Column="1" 
-                        HorizontalAlignment="Stretch" 
-                        VerticalAlignment="Top" 
-                        Margin="5" 
-                        PlaceholderText="Please choose a city" 
-                        ItemsSource="{Binding OriginLocations}"
-                        SelectedItem="{Binding Origin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                    <ComboBox 
-                        Grid.Row="2" 
-                        Grid.Column="1" 
-                        HorizontalAlignment="Stretch" 
-                        VerticalAlignment="Top" 
-                        Margin="5" 
-                        PlaceholderText="Please choose a city" 
-                        ItemsSource="{Binding DestinationLocations}"
-                        SelectedItem="{Binding Destination, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <StackPanel Grid.Row="0" Padding="20 5">
+                        <TextBlock Text="Customer:" />
+                        <TextBox Text="{Binding Customer, Mode=TwoWay}" HorizontalAlignment="Stretch" />
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" Padding="20 5">
+                        <TextBlock Text="Origin:" />
+                        <ComboBox 
+                            PlaceholderText="Please choose a city" 
+                            ItemsSource="{Binding OriginLocations}"
+                            SelectedItem="{Binding Origin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            HorizontalAlignment="Stretch" />
+                    </StackPanel>
+                    <StackPanel Grid.Row="2" Padding="20 5">
+                        <TextBlock Text="Destination:" />
+                        <ComboBox 
+                            PlaceholderText="Please choose a city" 
+                            ItemsSource="{Binding DestinationLocations}"
+                            SelectedItem="{Binding Destination, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            HorizontalAlignment="Stretch" />
+                    </StackPanel>
                 </Grid>
 
                 <Grid Grid.Column="1">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="50" />
-                        <RowDefinition Height="50" />
-                        <RowDefinition Height="50" />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
                     </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition />
-                    </Grid.ColumnDefinitions>
 
-                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Deadline:" HorizontalAlignment="Right" Margin="5" />
-                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Open:" HorizontalAlignment="Right" Margin="5"/>
-
-                    <CalendarDatePicker 
-                        Grid.Row="0" 
-                        Grid.Column="1" 
-                        HorizontalAlignment="Stretch" 
-                        VerticalAlignment="Top"
-                         Margin="5" 
-                         DisplayMode="Month"
-                         IsTodayHighlighted="True"
-                        MinDate="{Binding Today, Mode=OneWay, Converter={StaticResource DateTimeToDateTimeOffsetConverter}}"
-                         Date="{Binding Deadline, Mode=TwoWay, Converter={StaticResource DateTimeToDateTimeOffsetConverter}}"/>
-                    <ToggleSwitch 
-                        Grid.Row="1" 
-                        Grid.Column="1" 
-                        VerticalAlignment="Top" 
-                        OnContent="Open" 
-                        OffContent="Closed" 
-                         Margin="5"
-                         IsOn="{Binding Open, Mode=TwoWay}"/>
+                    <StackPanel Grid.Row="0" Padding="20 5">
+                        <TextBlock Text="Deadline:" />
+                        <CalendarDatePicker 
+                            DisplayMode="Month"
+                            IsTodayHighlighted="True"
+                            MinDate="{Binding Today, Mode=OneWay, Converter={StaticResource DateTimeToDateTimeOffsetConverter}}"
+                            Date="{Binding Deadline, Mode=TwoWay, Converter={StaticResource DateTimeToDateTimeOffsetConverter}}"
+                            HorizontalAlignment="Stretch" />
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" Padding="20 5">
+                        <TextBlock Text="Open:" />
+                        <ToggleSwitch 
+                            OnContent="Open" 
+                            OffContent="Closed" 
+                            IsOn="{Binding Open, Mode=TwoWay}"/>
+                    </StackPanel>
                 </Grid>
 
             </Grid>
 
             <Button 
-                Grid.Column="1" 
+                Grid.Column="2" 
                 Content="Add New"
                 Command="{Binding AddFreightRequestCommand}"
                 HorizontalAlignment="Center" 
