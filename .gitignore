@@ -4,3 +4,4 @@ bin/
 .vs/
 *.suo
 *.user
+/CL.Javelin.Clients.Shared/project.lock.json

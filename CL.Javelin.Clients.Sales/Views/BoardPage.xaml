@@ -1,0 +1,182 @@
+﻿<shared:NavigationAwarePage
+    x:Class="CL.Javelin.Clients.Sales.Views.BoardPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:prismMvvm="using:Prism.Windows.Mvvm"
+    xmlns:converters="using:CL.Javelin.Clients.Shared.Converters"
+    xmlns:shared="using:CL.Javelin.Clients.Shared.Views"
+    x:Uid="Page"
+    x:Name="pageRoot"
+    IsTabStop="false"
+    prismMvvm:ViewModelLocator.AutoWireViewModel="True"
+    mc:Ignorable="d">
+
+    <shared:NavigationAwarePage.Resources>
+        <converters:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
+    </shared:NavigationAwarePage.Resources>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="200"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="50"></ColumnDefinition>
+                <ColumnDefinition Width="175"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Image Grid.Column="1" Source="../Assets/coyote.jpg" Height="50" Width="50"></Image>
+            <TextBlock Grid.Column="2" Text="Javelin Sales" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontWeight="Bold"></TextBlock>
+        </Grid>
+
+        <ListView Grid.Row="1" ItemsSource="{Binding Requests, Mode=OneWay}">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalAlignment" Value="Stretch" />
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Row="0" Grid.Column="0">
+                            <Run Text="Customer:"></Run>
+                            <Run Text="{Binding Customer}"></Run>
+                        </TextBlock>
+
+                        <TextBlock Grid.Row="0" Grid.Column="1">
+                            <Run Text="Origin:"></Run>
+                            <Run Text="{Binding Origin}"></Run>
+                        </TextBlock>
+
+                        <TextBlock Grid.Row="0" Grid.Column="2">
+                            <Run Text="Destination:"></Run>
+                            <Run Text="{Binding Destination}"></Run>
+                        </TextBlock>
+
+                        <TextBlock Grid.Row="0" Grid.Column="3">
+                            <Run Text="Deadline:"></Run>
+                            <Run Text="{Binding Deadline}"></Run>
+                        </TextBlock>
+                    </Grid>
+
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="150" />
+            </Grid.ColumnDefinitions>
+
+            <Grid
+                Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Customer:" HorizontalAlignment="Right" Margin="5" />
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Origin:" HorizontalAlignment="Right" Margin="5" />
+                    <TextBlock Grid.Row="2" Grid.Column="0" Text="Destination:" HorizontalAlignment="Right" Margin="5" />
+
+                    <TextBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="5" Text="{Binding Customer, Mode=TwoWay}" />
+                    <ComboBox 
+                        Grid.Row="1" 
+                        Grid.Column="1" 
+                        HorizontalAlignment="Stretch" 
+                        VerticalAlignment="Top" 
+                        Margin="5" 
+                        PlaceholderText="Please choose a city" 
+                        ItemsSource="{Binding OriginLocations}"
+                        SelectedItem="{Binding Origin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <ComboBox 
+                        Grid.Row="2" 
+                        Grid.Column="1" 
+                        HorizontalAlignment="Stretch" 
+                        VerticalAlignment="Top" 
+                        Margin="5" 
+                        PlaceholderText="Please choose a city" 
+                        ItemsSource="{Binding DestinationLocations}"
+                        SelectedItem="{Binding Destination, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                </Grid>
+
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Deadline:" HorizontalAlignment="Right" Margin="5" />
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Open:" HorizontalAlignment="Right" Margin="5"/>
+
+                    <CalendarDatePicker 
+                        Grid.Row="0" 
+                        Grid.Column="1" 
+                        HorizontalAlignment="Stretch" 
+                        VerticalAlignment="Top"
+                         Margin="5" 
+                         DisplayMode="Month"
+                         IsTodayHighlighted="True"
+                        MinDate="{Binding Today, Mode=OneWay, Converter={StaticResource DateTimeToDateTimeOffsetConverter}}"
+                         Date="{Binding Deadline, Mode=TwoWay, Converter={StaticResource DateTimeToDateTimeOffsetConverter}}"/>
+                    <ToggleSwitch 
+                        Grid.Row="1" 
+                        Grid.Column="1" 
+                        VerticalAlignment="Top" 
+                        OnContent="Open" 
+                        OffContent="Closed" 
+                         Margin="5"
+                         IsOn="{Binding Open, Mode=TwoWay}"/>
+                </Grid>
+
+            </Grid>
+
+            <Button 
+                Grid.Column="1" 
+                Content="Add New"
+                Command="{Binding AddFreightRequestCommand}"
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Top" 
+                Margin="10" />
+        </Grid>
+    </Grid>
+</shared:NavigationAwarePage>
+
+
+

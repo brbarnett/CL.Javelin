@@ -7,17 +7,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Clients", "Clients", "{7721
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{8FF82EB2-823B-4B4E-8FB8-426DF874C3E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CL.Javelin.Notification.Service", "CL.Javelin.Notification.Service\CL.Javelin.Notification.Service.csproj", "{16FFB160-3CA5-449A-B7A1-0BFA7D6F7D23}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CL.Javelin.Services.Notification", "CL.Javelin.Services.Notification\CL.Javelin.Services.Notification.csproj", "{16FFB160-3CA5-449A-B7A1-0BFA7D6F7D23}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CL.Javelin.Sales.Service", "CL.Javelin.Sales.Service\CL.Javelin.Sales.Service.csproj", "{078AB40E-9E9E-4AF2-B65C-A34513A1E082}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CL.Javelin.Services.Sales", "CL.Javelin.Services.Sales\CL.Javelin.Services.Sales.csproj", "{078AB40E-9E9E-4AF2-B65C-A34513A1E082}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CL.Javelin.Fulfillment.Service", "CL.Javelin.Fulfillment.Service\CL.Javelin.Fulfillment.Service.csproj", "{ACA9A5B8-11E9-42D2-884B-9981B7E19E72}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CL.Javelin.Services.Fulfillment", "CL.Javelin.Services.Fulfillment\CL.Javelin.Services.Fulfillment.csproj", "{ACA9A5B8-11E9-42D2-884B-9981B7E19E72}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CL.Javelin.Store.Service", "CL.Javelin.Store.Service\CL.Javelin.Store.Service.csproj", "{E9361B84-64BB-44B8-B29A-4E453908516B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CL.Javelin.Services.Store", "CL.Javelin.Services.Store\CL.Javelin.Services.Store.csproj", "{E9361B84-64BB-44B8-B29A-4E453908516B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CL.Javelin.Sales.Client", "CL.Javelin.Sales.Client\CL.Javelin.Sales.Client.csproj", "{FBF72070-4C69-4EF2-A4B1-B6900237BD31}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CL.Javelin.Clients.Sales", "CL.Javelin.Clients.Sales\CL.Javelin.Clients.Sales.csproj", "{FBF72070-4C69-4EF2-A4B1-B6900237BD31}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CL.Javelin.Fulfillment.Client", "CL.Javelin.Fulfillment.Client\CL.Javelin.Fulfillment.Client.csproj", "{DFE3455C-C40B-4183-888D-03CA418C9237}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CL.Javelin.Clients.Fulfillment", "CL.Javelin.Clients.Fulfillment\CL.Javelin.Clients.Fulfillment.csproj", "{DFE3455C-C40B-4183-888D-03CA418C9237}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CL.Javelin.Core.Domain", "CL.Javelin.Core.Domain\CL.Javelin.Core.Domain.csproj", "{46F53D0D-6DF6-4A6B-8F68-B97841725CCD}"
 EndProject
