@@ -98,7 +98,7 @@
 
         <StackPanel Grid.Row="2">
             <TextBlock Text="{Binding SelectedRequest.Origin}"></TextBlock>
-            <Button Content="Mark Fulfilled" Command="{Binding ToggleSelectedRequestOpenCommand}" />
+            <Button Content="Toggle Fulfilled" Command="{Binding ToggleSelectedRequestOpenCommand}" />
         </StackPanel>
         
     </Grid>
