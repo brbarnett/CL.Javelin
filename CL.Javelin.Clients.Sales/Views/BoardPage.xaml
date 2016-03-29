@@ -89,7 +89,8 @@
             </Grid.ColumnDefinitions>
 
             <Grid
-                Grid.Column="0">
+                Grid.Column="0"
+                DataContext="{Binding NewRequest}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />

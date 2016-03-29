@@ -114,6 +114,7 @@
     <Compile Include="Events\Freight\Request\FreightRequestDeleted.cs" />
     <Compile Include="Events\Freight\Request\FreightRequestUpdated.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\RequestFormViewModel.cs" />
     <Compile Include="Views\NavigationAwarePage.cs" />
     <EmbeddedResource Include="Properties\CL.Javelin.Clients.Shared.rd.xml" />
   </ItemGroup>
