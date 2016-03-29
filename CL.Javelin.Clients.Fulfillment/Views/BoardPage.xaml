@@ -16,6 +16,7 @@
     mc:Ignorable="d">
 
     <shared:NavigationAwarePage.Resources>
+        <converters:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
         <converters:InvertBooleanConverter x:Key="InvertBooleanConverter" />
     </shared:NavigationAwarePage.Resources>
     
@@ -96,11 +97,85 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <StackPanel Grid.Row="2">
-            <TextBlock Text="{Binding SelectedRequest.Origin}"></TextBlock>
-            <Button Content="Toggle Fulfilled" Command="{Binding ToggleSelectedRequestOpenCommand}" />
-        </StackPanel>
-        
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="8*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="150" />
+            </Grid.ColumnDefinitions>
+
+            <Grid
+                Grid.Column="0"
+                DataContext="{Binding NewRequest}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0" Padding="20 5">
+                        <TextBlock Text="Customer:" />
+                        <TextBox Text="{Binding Customer, Mode=TwoWay}" HorizontalAlignment="Stretch" />
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" Padding="20 5">
+                        <TextBlock Text="Origin:" />
+                        <ComboBox 
+                            PlaceholderText="Please choose a city" 
+                            ItemsSource="{Binding OriginLocations}"
+                            SelectedItem="{Binding Origin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            HorizontalAlignment="Stretch" />
+                    </StackPanel>
+                    <StackPanel Grid.Row="2" Padding="20 5">
+                        <TextBlock Text="Destination:" />
+                        <ComboBox 
+                            PlaceholderText="Please choose a city" 
+                            ItemsSource="{Binding DestinationLocations}"
+                            SelectedItem="{Binding Destination, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            HorizontalAlignment="Stretch" />
+                    </StackPanel>
+                </Grid>
+
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0" Padding="20 5">
+                        <TextBlock Text="Deadline:" />
+                        <CalendarDatePicker 
+                            DisplayMode="Month"
+                            IsTodayHighlighted="True"
+                            MinDate="{Binding Today, Mode=OneWay, Converter={StaticResource DateTimeToDateTimeOffsetConverter}}"
+                            Date="{Binding Deadline, Mode=TwoWay, Converter={StaticResource DateTimeToDateTimeOffsetConverter}}"
+                            HorizontalAlignment="Stretch" />
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" Padding="20 5">
+                        <TextBlock Text="Open:" />
+                        <ToggleSwitch 
+                            OnContent="Open" 
+                            OffContent="Closed" 
+                            IsOn="{Binding Open, Mode=TwoWay}"/>
+                    </StackPanel>
+                </Grid>
+
+            </Grid>
+
+            <Button 
+                Grid.Column="2" 
+                Content="Toggle"
+                Command="{Binding ToggleSelectedRequestOpenCommand}"
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Top" 
+                Margin="10" />
+        </Grid>
     </Grid>
 </shared:NavigationAwarePage>
 
