@@ -1,7 +1,7 @@
 ﻿using System;
 using Windows.UI.Xaml.Data;
 
-namespace CL.Javelin.Fulfillment.Client.Converters
+namespace CL.Javelin.Clients.Shared.Converters
 {
     public class InvertBooleanConverter : IValueConverter
     {

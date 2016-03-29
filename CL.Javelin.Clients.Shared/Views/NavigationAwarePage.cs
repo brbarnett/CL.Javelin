@@ -4,7 +4,7 @@ using Windows.UI.Xaml;
 using Prism.Commands;
 using Prism.Windows.Mvvm;
 
-namespace CL.Javelin.Fulfillment.Client.Views
+namespace CL.Javelin.Clients.Shared.Views
 {
     public class NavigationAwarePage : SessionStateAwarePage
     {

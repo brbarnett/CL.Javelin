@@ -98,11 +98,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Behaviors\ActionCommand.cs" />
-    <Compile Include="Converters\InvertBooleanConverter.cs" />
-    <Compile Include="Events\Freight\Request\FreightRequestDeleted.cs" />
-    <Compile Include="Events\Freight\Request\FreightRequestUpdated.cs" />
-    <Compile Include="Events\Freight\Request\FreightRequestCreated.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -111,7 +106,6 @@
     <Compile Include="Views\BoardPage.xaml.cs">
       <DependentUpon>BoardPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\NavigationAwarePage.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -145,6 +139,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CL.Javelin.Clients.Shared\CL.Javelin.Clients.Shared.csproj">
+      <Project>{395020cd-e7e0-44c5-8906-407d7a5b4b99}</Project>
+      <Name>CL.Javelin.Clients.Shared</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CL.Javelin.Core.Domain\CL.Javelin.Core.Domain.csproj">
       <Project>{46f53d0d-6df6-4a6b-8f68-b97841725ccd}</Project>
       <Name>CL.Javelin.Core.Domain</Name>

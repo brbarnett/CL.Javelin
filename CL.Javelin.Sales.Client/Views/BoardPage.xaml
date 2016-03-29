@@ -1,4 +1,4 @@
-﻿<local:NavigationAwarePage
+﻿<shared:NavigationAwarePage
     x:Class="CL.Javelin.Sales.Client.Views.BoardPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -6,19 +6,17 @@
     xmlns:local="using:CL.Javelin.Sales.Client.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:prismMvvm="using:Prism.Windows.Mvvm"
-    xmlns:views="using:CL.Javelin.Sales.Client.Views"
-    xmlns:converters="using:CL.Javelin.Sales.Client.Converters"
-    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
-    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:converters="using:CL.Javelin.Clients.Shared.Converters"
+    xmlns:shared="using:CL.Javelin.Clients.Shared.Views"
     x:Uid="Page"
     x:Name="pageRoot"
     IsTabStop="false"
     prismMvvm:ViewModelLocator.AutoWireViewModel="True"
     mc:Ignorable="d">
 
-    <local:NavigationAwarePage.Resources>
+    <shared:NavigationAwarePage.Resources>
         <converters:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
-    </local:NavigationAwarePage.Resources>
+    </shared:NavigationAwarePage.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
@@ -179,5 +177,7 @@
                 Margin="10" />
         </Grid>
     </Grid>
-</local:NavigationAwarePage>
+</shared:NavigationAwarePage>
+
+
 

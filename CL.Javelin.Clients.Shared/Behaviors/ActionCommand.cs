@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace CL.Javelin.Fulfillment.Client.Behaviors
+namespace CL.Javelin.Clients.Shared.Behaviors
 {
     public class ActionCommand<TParam> : ICommand
     {

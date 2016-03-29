@@ -1,6 +1,6 @@
 ﻿using Prism.Events;
 
-namespace CL.Javelin.Sales.Client.Events.Freight.Request
+namespace CL.Javelin.Clients.Shared.Events.Freight.Request
 {
     public class FreightRequestCreated : PubSubEvent<Core.Domain.Freight.Request>
     {
