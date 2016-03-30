@@ -16,6 +16,7 @@
     mc:Ignorable="d">
 
     <shared:NavigationAwarePage.Resources>
+        <converters:DateTimeToDateConverter x:Key="DateTimeToDateConverter" />
         <converters:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
         <converters:InvertBooleanConverter x:Key="InvertBooleanConverter" />
     </shared:NavigationAwarePage.Resources>
@@ -65,6 +66,7 @@
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
                         <TextBlock Grid.Column="0">
@@ -84,10 +86,17 @@
 
                         <TextBlock Grid.Column="3">
                             <Run Text="Deadline:"></Run>
-                            <Run Text="{Binding Deadline}"></Run>
+                            <Run Text="{Binding Deadline, Converter={StaticResource DateTimeToDateConverter}}"></Run>
                         </TextBlock>
 
                         <TextBlock Grid.Column="4">
+                            <Run Text="Skids:"></Run>
+                            <Run Text="{Binding Skids}"></Run><Run Text=","></Run>
+                            <Run Text="Pieces:"></Run>
+                            <Run Text="{Binding Pieces}"></Run>
+                        </TextBlock>
+
+                        <TextBlock Grid.Column="5">
                             <Run Text="Fulfilled:"></Run>
                             <Run Text="{Binding Path=Open, Converter={StaticResource InvertBooleanConverter}}"></Run>
                         </TextBlock>

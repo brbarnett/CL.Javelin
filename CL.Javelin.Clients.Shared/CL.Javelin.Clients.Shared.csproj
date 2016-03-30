@@ -108,6 +108,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Behaviors\ActionCommand.cs" />
+    <Compile Include="Converters\DateTimeToDateConverter.cs" />
     <Compile Include="Converters\DateTimeToDateTimeOffsetConverter.cs" />
     <Compile Include="Converters\InvertBooleanConverter.cs" />
     <Compile Include="Events\Freight\Request\FreightRequestCreated.cs" />

@@ -17,5 +17,13 @@ namespace CL.Javelin.Core.Domain.Freight
         public DateTime Deadline { get; set; } = DateTime.Today.Date;
 
         public bool Open { get; set; } = true;
+
+        public int Weight { get; set; } = 0;
+
+        public int Skids { get; set; } = 0;
+
+        public int Pieces { get; set; } = 0;
+
+        public string HazardClass { get; set; }
     }
 }

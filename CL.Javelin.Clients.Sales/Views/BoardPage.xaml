@@ -14,6 +14,7 @@
     mc:Ignorable="d">
 
     <shared:NavigationAwarePage.Resources>
+        <converters:DateTimeToDateConverter x:Key="DateTimeToDateConverter" />
         <converters:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
         <converters:InvertBooleanConverter x:Key="InvertBooleanConverter" />
     </shared:NavigationAwarePage.Resources>
@@ -54,6 +55,7 @@
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
                         <TextBlock Grid.Column="0">
@@ -73,10 +75,17 @@
 
                         <TextBlock Grid.Column="3">
                             <Run Text="Deadline:"></Run>
-                            <Run Text="{Binding Deadline}"></Run>
+                            <Run Text="{Binding Deadline, Converter={StaticResource DateTimeToDateConverter}}"></Run>
                         </TextBlock>
 
                         <TextBlock Grid.Column="4">
+                            <Run Text="Skids:"></Run>
+                            <Run Text="{Binding Skids}"></Run><Run Text=","></Run>
+                            <Run Text="Pieces:"></Run>
+                            <Run Text="{Binding Pieces}"></Run>
+                        </TextBlock>
+                        
+                        <TextBlock Grid.Column="5">
                             <Run Text="Fulfilled:"></Run>
                             <Run Text="{Binding Path=Open, Converter={StaticResource InvertBooleanConverter}}"></Run>
                         </TextBlock>
@@ -147,11 +156,34 @@
                             HorizontalAlignment="Stretch" />
                     </StackPanel>
                     <StackPanel Grid.Row="1" Padding="20 5">
-                        <TextBlock Text="Open:" />
-                        <ToggleSwitch 
-                            OnContent="Open" 
-                            OffContent="Closed" 
-                            IsOn="{Binding Open, Mode=TwoWay}"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            
+                            <StackPanel Grid.Column="0" Margin="0 0 5 0">
+                                <TextBlock Text="Skids:" />
+                                <TextBox Text="{Binding Skids, Mode=TwoWay}" HorizontalAlignment="Stretch" />
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" Margin="5 0 5 0">
+                                <TextBlock Text="Pieces:" />
+                                <TextBox Text="{Binding Pieces, Mode=TwoWay}" HorizontalAlignment="Stretch" />
+                            </StackPanel>
+                            <StackPanel Grid.Column="2" Margin="5 0 0 0">
+                                <TextBlock Text="Weight:" />
+                                <TextBox Text="{Binding Weight, Mode=TwoWay}" HorizontalAlignment="Stretch" />
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+                    <StackPanel Grid.Row="2" Padding="20 5">
+                        <TextBlock Text="DOT Hazard Class:" />
+                        <ComboBox 
+                            PlaceholderText="Please select Hazard Class" 
+                            ItemsSource="{Binding HazardClasses}"
+                            SelectedItem="{Binding HazardClass, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            HorizontalAlignment="Stretch" />
                     </StackPanel>
                 </Grid>
 
