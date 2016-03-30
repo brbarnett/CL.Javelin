@@ -17,14 +17,14 @@ namespace CL.Javelin.Clients.Shared.ViewModels
             {
                 if (ReferenceEquals(this._request, null))
                 {
-                    this._request = new RequestViewModel(this.NotifyCommands);
+                    SetProperty(ref this._request, new RequestViewModel(this.NotifyCommands));
                     this.NotifyCommands();
                 }
                 return this._request;
             }
             set
             {
-                this._request = value;
+                SetProperty(ref this._request, value);
                 this.NotifyCommands();
             }
         }
