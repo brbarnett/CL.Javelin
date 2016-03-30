@@ -14,9 +14,7 @@
     mc:Ignorable="d">
 
     <shared:NavigationAwarePage.Resources>
-        <converters:DateTimeToDateConverter x:Key="DateTimeToDateConverter" />
-        <converters:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
-        <converters:InvertBooleanConverter x:Key="InvertBooleanConverter" />
+        <ResourceDictionary Source="ms-appx:///CL.Javelin.Clients.Shared/Resources/ClientResources.xaml" />
     </shared:NavigationAwarePage.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -34,65 +32,19 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <Image Grid.Column="1" Source="../Assets/coyote.jpg" Height="50" Width="50"></Image>
+            <Image Grid.Column="1" Source="{StaticResource CoyoteLogoSales}" Height="50" Width="50"></Image>
             <TextBlock Grid.Column="2" Text="Javelin Sales" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontWeight="Bold"></TextBlock>
         </Grid>
 
-        <ListView Grid.Row="1" ItemsSource="{Binding Requests, Mode=OneWay}">
-            <ListView.ItemContainerStyle>
-                <Style TargetType="ListViewItem">
-                    <Setter Property="HorizontalAlignment" Value="Stretch" />
-                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                </Style>
-            </ListView.ItemContainerStyle>
-            <ListView.ItemTemplate>
-                <DataTemplate>
+        <ListView 
+            Grid.Row="1" 
+            x:Name="BoardListView"
+            ItemsSource="{Binding Requests}"
+            SelectedItem="{Binding SelectedRequest, Mode=TwoWay}"
+            ItemContainerStyle="{StaticResource BoardListViewItemContainerStyle}"
+            ItemTemplate="{StaticResource BoardListViewItemTemplate}"
+            >
 
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-
-                        <TextBlock Grid.Column="0">
-                            <Run Text="Customer:"></Run>
-                            <Run Text="{Binding Customer}"></Run>
-                        </TextBlock>
-
-                        <TextBlock Grid.Column="1">
-                            <Run Text="Origin:"></Run>
-                            <Run Text="{Binding Origin}"></Run>
-                        </TextBlock>
-
-                        <TextBlock Grid.Column="2">
-                            <Run Text="Destination:"></Run>
-                            <Run Text="{Binding Destination}"></Run>
-                        </TextBlock>
-
-                        <TextBlock Grid.Column="3">
-                            <Run Text="Deadline:"></Run>
-                            <Run Text="{Binding Deadline, Converter={StaticResource DateTimeToDateConverter}}"></Run>
-                        </TextBlock>
-
-                        <TextBlock Grid.Column="4">
-                            <Run Text="Skids:"></Run>
-                            <Run Text="{Binding Skids}"></Run><Run Text=","></Run>
-                            <Run Text="Pieces:"></Run>
-                            <Run Text="{Binding Pieces}"></Run>
-                        </TextBlock>
-                        
-                        <TextBlock Grid.Column="5">
-                            <Run Text="Fulfilled:"></Run>
-                            <Run Text="{Binding Path=Open, Converter={StaticResource InvertBooleanConverter}}"></Run>
-                        </TextBlock>
-                    </Grid>
-
-                </DataTemplate>
-            </ListView.ItemTemplate>
         </ListView>
 
         <Grid Grid.Row="2">

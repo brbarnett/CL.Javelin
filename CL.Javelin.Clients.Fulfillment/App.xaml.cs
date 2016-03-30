@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Globalization;
-using System.Reflection;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
-using Windows.UI.Notifications;
 using Windows.UI.Xaml;
 using CL.Javelin.Clients.Shared.Events.Freight.Request;
 using CL.Javelin.Core.Domain.Freight;

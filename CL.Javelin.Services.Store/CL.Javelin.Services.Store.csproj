@@ -67,8 +67,8 @@
     <Compile Include="Routes\Freight\RequestRoutes.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config.example" />
     <None Include="App.config" />
+    <None Include="App.config.example" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

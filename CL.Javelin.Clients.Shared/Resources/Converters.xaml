@@ -1,0 +1,8 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CL.Javelin.Clients.Shared.Converters">
+    <local:DateTimeToDateConverter x:Key="DateTimeToDateConverter" />
+    <local:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
+    <local:InvertBooleanConverter x:Key="InvertBooleanConverter" />
+</ResourceDictionary>

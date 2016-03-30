@@ -24,9 +24,9 @@ namespace CL.Javelin.Core.Utilities
 
         public static async Task<SimpleHttpResponse> Delete(string url)
         {
-            var response = await SendRequest(HttpMethod.Delete, url, null);
+            HttpResponseMessage response = await SendRequest(HttpMethod.Delete, url, null);
 
-            var simpleResponse = new SimpleHttpResponse
+            SimpleHttpResponse simpleResponse = new SimpleHttpResponse
             {
                 StatusCode = response.StatusCode,
                 Content = null
@@ -37,9 +37,9 @@ namespace CL.Javelin.Core.Utilities
 
         public static async Task<SimpleHttpResponse> Post<TResult>(string url, object body)
         {
-            var response = await SendRequest(HttpMethod.Post, url, body);
+            HttpResponseMessage response = await SendRequest(HttpMethod.Post, url, body);
 
-            var simpleResponse = new SimpleHttpResponse
+            SimpleHttpResponse simpleResponse = new SimpleHttpResponse
             {
                 StatusCode = response.StatusCode,
                 Content = JsonConvert.DeserializeObject<TResult>(await response.Content.ReadAsStringAsync())
@@ -50,9 +50,9 @@ namespace CL.Javelin.Core.Utilities
 
         public static async Task<SimpleHttpResponse> Post(string url, object body)
         {
-            var response = await SendRequest(HttpMethod.Post, url, body);
+            HttpResponseMessage response = await SendRequest(HttpMethod.Post, url, body);
 
-            var simpleResponse = new SimpleHttpResponse
+            SimpleHttpResponse simpleResponse = new SimpleHttpResponse
             {
                 StatusCode = response.StatusCode,
                 Content = null
@@ -63,9 +63,9 @@ namespace CL.Javelin.Core.Utilities
 
         public static async Task<SimpleHttpResponse> Put<TResult>(string url, object body)
         {
-            var response = await SendRequest(HttpMethod.Put, url, body);
+            HttpResponseMessage response = await SendRequest(HttpMethod.Put, url, body);
 
-            var simpleResponse = new SimpleHttpResponse
+            SimpleHttpResponse simpleResponse = new SimpleHttpResponse
             {
                 StatusCode = response.StatusCode,
                 Content = JsonConvert.DeserializeObject<TResult>(await response.Content.ReadAsStringAsync())
@@ -76,9 +76,9 @@ namespace CL.Javelin.Core.Utilities
 
         public static async Task<SimpleHttpResponse> Put(string url, object body)
         {
-            var response = await SendRequest(HttpMethod.Put, url, body);
+            HttpResponseMessage response = await SendRequest(HttpMethod.Put, url, body);
 
-            var simpleResponse = new SimpleHttpResponse
+            SimpleHttpResponse simpleResponse = new SimpleHttpResponse
             {
                 StatusCode = response.StatusCode,
                 Content = null
