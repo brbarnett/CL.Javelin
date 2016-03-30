@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.UI.Core;
@@ -18,12 +17,33 @@ namespace CL.Javelin.Clients.Shared.ViewModels
     {
         private readonly IEventAggregator _eventAggregator;
 
-        private ObservableCollection<Request> _requests = new ObservableCollection<Request>();
+        private ObservableCollection<RequestFormViewModel> _requests = new ObservableCollection<RequestFormViewModel>();
 
-        public ObservableCollection<Request> Requests
+        public ObservableCollection<RequestFormViewModel> Requests
         {
             get { return this._requests; }
             private set { base.SetProperty(ref this._requests, value); }
+        }
+
+        private RequestFormViewModel _selectedRequest;
+
+        public RequestFormViewModel SelectedRequest
+        {
+            get
+            {
+                return this._selectedRequest;
+            }
+            set
+            {
+                if (ReferenceEquals(value, null))
+                {
+                    value = this.CreateRequestFormViewModel(null);
+                }
+                if (this.SetProperty(ref this._selectedRequest, value))
+                {
+                    this._selectedRequest = value;
+                }
+            }
         }
 
         protected BoardPageViewModelBase(IEventAggregator eventAggregator)
@@ -44,10 +64,12 @@ namespace CL.Javelin.Clients.Shared.ViewModels
         private async Task Load()
         {
             IEnumerable<Request> requests = await Core.Utilities.Http.Get<IEnumerable<Request>>(this.ServiceUri);
-            this.Requests = new ObservableCollection<Request>(requests);
+            this.Requests = new ObservableCollection<RequestFormViewModel>(requests.Select(x => this.CreateRequestFormViewModel(x)));
         }
 
         protected abstract string ServiceUri { get; }
+
+        protected abstract RequestFormViewModel CreateRequestFormViewModel(IRequest request);
 
         private void ConnectToNotificationHub()
         {
@@ -56,7 +78,7 @@ namespace CL.Javelin.Clients.Shared.ViewModels
                 await DispatchAsync(
                     CoreDispatcherPriority.Normal, () =>
                     {
-                        this.Requests.Add(request);
+                        this.Requests.Add(this.CreateRequestFormViewModel(request));
                     });
             });
 
@@ -65,12 +87,12 @@ namespace CL.Javelin.Clients.Shared.ViewModels
                 await DispatchAsync(
                     CoreDispatcherPriority.Normal, () =>
                     {
-                        Request existing = this.Requests.SingleOrDefault(x => x.Id == request.Id);
+                        RequestFormViewModel existing = this.Requests.SingleOrDefault(x => x.Id == request.Id);
 
                         if (existing == null) return;
 
                         int index = this.Requests.IndexOf(existing);
-                        this.Requests[index] = request;
+                        this.Requests[index] = this.CreateRequestFormViewModel(request);
                     });
             });
 
@@ -79,7 +101,7 @@ namespace CL.Javelin.Clients.Shared.ViewModels
                 await DispatchAsync(
                     CoreDispatcherPriority.Normal, () =>
                     {
-                        Request toRemove = this.Requests.SingleOrDefault(x => x.Id == request.Id);
+                        RequestFormViewModel toRemove = this.Requests.SingleOrDefault(x => x.Id == request.Id);
 
                         if (toRemove == null) return;
 

@@ -3,7 +3,6 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:converters="using:CL.Javelin.Clients.Shared.Converters"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:prismMvvm="using:Prism.Windows.Mvvm"
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
@@ -53,16 +52,15 @@
             </interactivity:Interaction.Behaviors>
         </ListView>
 
-        <Grid Grid.Row="2">
+        <Grid Grid.Row="2"
+              DataContext="{Binding SelectedRequest}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="8*" />
                 <ColumnDefinition Width="2*" />
                 <ColumnDefinition Width="150" />
             </Grid.ColumnDefinitions>
 
-            <Grid
-                Grid.Column="0"
-                DataContext="{Binding SelectedRequest}">
+            <Grid Grid.Column="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
@@ -83,17 +81,17 @@
                         <TextBlock Text="Origin:" />
                         <ComboBox 
                             PlaceholderText="Please choose a city" 
-                            ItemsSource="{Binding OriginLocations}"
-                            SelectedItem="{Binding Origin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                            HorizontalAlignment="Stretch" />
+                            ItemsSource="{StaticResource LocationsList}"
+                            SelectedItem="{Binding Origin, Mode=TwoWay}"
+                            Style="{StaticResource ComboBoxViewModelStyle}" />
                     </StackPanel>
                     <StackPanel Grid.Row="2" Padding="20 5">
                         <TextBlock Text="Destination:" />
                         <ComboBox 
                             PlaceholderText="Please choose a city" 
-                            ItemsSource="{Binding DestinationLocations}"
-                            SelectedItem="{Binding Destination, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                            HorizontalAlignment="Stretch" />
+                            ItemsSource="{StaticResource LocationsList}"
+                            SelectedItem="{Binding Destination, Mode=TwoWay}"
+                            Style="{StaticResource ComboBoxViewModelStyle}" />
                     </StackPanel>
                 </Grid>
 

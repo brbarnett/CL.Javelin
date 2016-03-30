@@ -10,21 +10,6 @@ namespace CL.Javelin.Clients.Fulfillment.ViewModels
 {
     public class BoardPageViewModel : BoardPageViewModelBase
     {
-        private RequestFormViewModel _requestFormViewModel;
-
-        public RequestFormViewModel SelectedRequest
-        {
-            get
-            {
-                return this._requestFormViewModel;
-            }
-            set
-            {
-                if (value == null) return;
-                this._requestFormViewModel = value;
-            }
-        }
-
         public ICommand ChangeSelectedRequestCommand { get; private set; }
 
         public DelegateCommand ToggleSelectedRequestOpenCommand { get; private set; }
@@ -42,7 +27,8 @@ namespace CL.Javelin.Clients.Fulfillment.ViewModels
             this.ToggleSelectedRequestOpenCommand = new DelegateCommand(this.ToggleSelectedRequestOpen, this.CanOperateOnRequest);
             this.DeleteSelectedRequestCommand = new DelegateCommand(this.DeleteSelectedRequest, this.CanOperateOnRequest);
 
-            this.SelectedRequest = new RequestFormViewModel(new[] { this.ToggleSelectedRequestOpenCommand, this.DeleteSelectedRequestCommand });
+            //this forces a blank request to be created
+            this.SelectedRequest = null;
         }
 
         private async void ToggleSelectedRequestOpen()
@@ -51,9 +37,9 @@ namespace CL.Javelin.Clients.Fulfillment.ViewModels
 
             this.SelectedRequest.Open = !this.SelectedRequest.Open;
 
-            await Http.Put(this.ServiceUri, this.SelectedRequest.GetRequest());
+            await Http.Put(this.ServiceUri, this.SelectedRequest.GetDomainRequest());
 
-            this.SelectedRequest.Reset();
+            this.SelectedRequest = null;
         }
 
         private async void DeleteSelectedRequest()
@@ -62,9 +48,9 @@ namespace CL.Javelin.Clients.Fulfillment.ViewModels
 
             this.SelectedRequest.Open = !this.SelectedRequest.Open;
 
-            await Http.Delete(this.ServiceUri +  $"/{this.SelectedRequest.GetRequest().Id}");
+            await Http.Delete(this.ServiceUri +  $"/{this.SelectedRequest.GetDomainRequest().Id}");
 
-            this.SelectedRequest.Reset();
+            this.SelectedRequest = null;
         }
 
         private bool CanOperateOnRequest()
@@ -73,5 +59,10 @@ namespace CL.Javelin.Clients.Fulfillment.ViewModels
         }
 
         protected override string ServiceUri { get { return "http://127.0.0.1:9003/freight/requests"; } }
+
+        protected override RequestFormViewModel CreateRequestFormViewModel(IRequest request)
+        {
+            return new RequestFormViewModel(request, new[] { this.ToggleSelectedRequestOpenCommand, this.DeleteSelectedRequestCommand });
+        }    
     }
 }

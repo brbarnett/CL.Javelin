@@ -116,6 +116,7 @@
     <Compile Include="Events\Freight\Request\FreightRequestUpdated.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\BoardPageViewModelBase.cs" />
+    <Compile Include="ViewModels\StringList.cs" />
     <Compile Include="ViewModels\RequestFormViewModel.cs" />
     <Compile Include="ViewModels\RequestViewModel.cs" />
     <Compile Include="Views\BoardListViewItemStyleSelector.cs" />
@@ -139,6 +140,16 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
     <Page Include="Resources\ClientResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="Resources\Locations.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="Resources\HazardClasses.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

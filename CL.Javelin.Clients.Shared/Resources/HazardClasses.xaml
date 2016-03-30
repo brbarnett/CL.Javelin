@@ -1,0 +1,32 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:viewModels="using:CL.Javelin.Clients.Shared.ViewModels">
+
+    <viewModels:StringList x:Key="HazardClassList">
+        <x:String>1.1: Explosives with a mass explosion hazard</x:String>
+        <x:String>1.2: Explosives with a projection hazard</x:String>
+        <x:String>1.3: Explosives with predominantly a fire hazard</x:String>
+        <x:String>1.4: Explosives with no significant blast hazard</x:String>
+        <x:String>1.5: Very insensitive explosives</x:String>
+        <x:String>1.6: Extremely insensitive explosive articles</x:String>
+        <x:String>2.1: Flammable gases</x:String>
+        <x:String>2.2: Non-flammable gases</x:String>
+        <x:String>2.3: Poison gases</x:String>
+        <x:String>2.4: Corrosive gases</x:String>
+        <x:String>3.1: Flashpoint below -18°C(0°F)</x:String>
+        <x:String>3.2: Flashpoint below -18°C and above, but less than 23°C(73°F)</x:String>
+        <x:String>3.3: Flashpoint 23°C and up to 61°C(141°F)</x:String>
+        <x:String>4.1: Flammable solids</x:String>
+        <x:String>4.2: Spontaneously combustible materials</x:String>
+        <x:String>4.3: Materials that are dangerous when wet</x:String>
+        <x:String>5.1: Oxidizers</x:String>
+        <x:String>5.2: Organic peroxides</x:String>
+        <x:String>6.1: Poisonous materials</x:String>
+        <x:String>6.2: Etiologic(infectious) materials</x:String>
+        <x:String>7.0: Radioactive material</x:String>
+        <x:String>8.0: Corrosives</x:String>
+        <x:String>9.0: Miscellaneous dangerous substances and articles</x:String>
+    </viewModels:StringList>
+
+</ResourceDictionary>

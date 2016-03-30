@@ -6,28 +6,15 @@ namespace CL.Javelin.Clients.Shared.ViewModels
 {
     public class RequestViewModel : ViewModelBase, IRequest
     {
-        private readonly Action _onPropertyChanged;
-
-        public RequestViewModel(Action onPropertyChanged)
-            : this(onPropertyChanged, null)
+        public RequestViewModel()
+            : this(null)
         {
             
         }
 
-        public RequestViewModel(Action onPropertyChanged, IRequest request)
+        public RequestViewModel(IRequest request)
         {
-            this._onPropertyChanged = onPropertyChanged;
             new AbstractRequestCopier().Copy(request, this);
-        }
-
-        protected override bool SetProperty<T>(ref T storage, T value, string propertyName = null)
-        {
-            bool wasChanged = base.SetProperty(ref storage, value, propertyName);
-            if (wasChanged)
-            {
-                this._onPropertyChanged();
-            }
-            return wasChanged;
         }
 
         private Guid _id;

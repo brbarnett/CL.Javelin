@@ -4,6 +4,8 @@
     xmlns:views="using:CL.Javelin.Clients.Shared.Views">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="Converters.xaml" />
+        <ResourceDictionary Source="Locations.xaml" />
+        <ResourceDictionary Source="HazardClasses.xaml" />
     </ResourceDictionary.MergedDictionaries>
     
     <ResourceDictionary.ThemeDictionaries>
@@ -35,6 +37,10 @@
         <Setter Property="Foreground" Value="{ThemeResource ApplicationPageBackgroundThemeBrush}"/>
     </Style>
 
+    <Style x:Key="ComboBoxViewModelStyle" TargetType="ComboBox">
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+    </Style>
+    
     <DataTemplate x:Key="BoardListViewItemTemplate">
         <Grid>
             <Grid.ColumnDefinitions>
