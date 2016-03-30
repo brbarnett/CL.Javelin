@@ -32,6 +32,7 @@
 
     <Style x:Key="BoardListViewItemContainerStyleOdd" TargetType="ListViewItem" BasedOn="{StaticResource BoardListViewItemContainerStyleBase}">
         <Setter Property="Background" Value="{StaticResource CoyoteGreen}"/>
+        <Setter Property="Foreground" Value="{ThemeResource ApplicationPageBackgroundThemeBrush}"/>
     </Style>
 
     <DataTemplate x:Key="BoardListViewItemTemplate">
