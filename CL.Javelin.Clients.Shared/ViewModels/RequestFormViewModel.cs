@@ -161,7 +161,7 @@ namespace CL.Javelin.Clients.Shared.ViewModels
 
         public void SetRequest(Request request)
         {
-            new AbstractRequestCopier().Copy(request, this._request);
+            this.Request = new RequestViewModel(this.NotifyCommands, request);
         }
 
         public Request GetRequest()
