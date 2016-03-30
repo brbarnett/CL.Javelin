@@ -41,7 +41,7 @@
             x:Name="BoardListView"
             ItemsSource="{Binding Requests}"
             SelectedItem="{Binding SelectedRequest, Mode=TwoWay}"
-            ItemContainerStyle="{StaticResource BoardListViewItemContainerStyle}"
+            ItemContainerStyleSelector="{StaticResource BoardListViewItemStyleSelector}"
             ItemTemplate="{StaticResource BoardListViewItemTemplate}"
             >
 

@@ -53,7 +53,7 @@ namespace CL.Javelin.Clients.Shared.ViewModels
         {
             this._eventAggregator.GetEvent<FreightRequestCreated>().Subscribe(async (request) =>
             {
-                await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(
+                await DispatchAsync(
                     CoreDispatcherPriority.Normal, () =>
                     {
                         this.Requests.Add(request);
@@ -92,7 +92,9 @@ namespace CL.Javelin.Clients.Shared.ViewModels
         protected async Task<IAsyncAction> DispatchAsync(CoreDispatcherPriority priority, DispatchedHandler agileCallback)
 #pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
         {
-            return Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(
+            CoreDispatcher dispatcher = Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher;
+
+            return dispatcher.RunAsync(
                 priority,
                 agileCallback);
         }
