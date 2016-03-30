@@ -9,24 +9,22 @@ namespace CL.Javelin.Clients.Shared.ViewModels
 {
     public class RequestFormViewModel : ViewModelBase
     {
-        private Request _request = new Request();
+        private RequestViewModel _request;
 
-        private Request Request
+        public RequestViewModel Request
         {
-            get { return this._request; }
-            set
+            get
             {
-                base.SetProperty(ref this._request, value);
-                this.NotifyCommands();
+                if (ReferenceEquals(this._request, null))
+                {
+                    this._request = new RequestViewModel(this.NotifyCommands);
+                    this.NotifyCommands();
+                }
+                return this._request;
             }
-        }
-
-        public string Customer
-        {
-            get { return this._request.Customer; }
             set
             {
-                this._request.Customer = value;
+                this._request = value;
                 this.NotifyCommands();
             }
         }
@@ -37,8 +35,7 @@ namespace CL.Javelin.Clients.Shared.ViewModels
             {
                 if (value.Content == null) return;
 
-                this._request.Origin = value.Content.ToString();
-                this.NotifyCommands();
+                this.Request.Origin = value.Content.ToString();
             }
         }
 
@@ -48,8 +45,7 @@ namespace CL.Javelin.Clients.Shared.ViewModels
             {
                 if (value.Content == null) return;
 
-                this._request.Destination = value.Content.ToString();
-                this.NotifyCommands();
+                this.Request.Destination = value.Content.ToString();
             }
         }
 
@@ -59,58 +55,16 @@ namespace CL.Javelin.Clients.Shared.ViewModels
             {
                 if (value.Content == null) return;
 
-                this._request.HazardClass = value.Content.ToString();
-                this.NotifyCommands();
-            }
-        }
-
-        public DateTime Deadline
-        {
-            get { return this._request.Deadline; }
-            set
-            {
-                this._request.Deadline = value;
-                this.NotifyCommands();
+                this.Request.HazardClass = value.Content.ToString();
             }
         }
 
         public bool Open
         {
-            get { return this._request.Open; }
+            get { return this.Request.Open; }
             set
             {
-                this._request.Open = value;
-                this.NotifyCommands();
-            }
-        }
-
-        public int Skids
-        {
-            get { return this._request.Skids; }
-            set
-            {
-                this._request.Skids = value;
-                this.NotifyCommands();
-            }
-        }
-
-        public int Pieces
-        {
-            get { return this._request.Pieces; }
-            set
-            {
-                this._request.Pieces = value;
-                this.NotifyCommands();
-            }
-        }
-
-        public int Weight
-        {
-            get { return this._request.Weight; }
-            set
-            {
-                this._request.Weight = value;
-                this.NotifyCommands();
+                this.Request.Open = value;
             }
         }
 
@@ -186,10 +140,10 @@ namespace CL.Javelin.Clients.Shared.ViewModels
 
         public bool IsValid()
         {
-            if (this.Request == null) return false;
-            if (String.IsNullOrEmpty(this.Request.Customer)) return false;
-            if (String.IsNullOrEmpty(this.Request.Origin)) return false;
-            if (String.IsNullOrEmpty(this.Request.Destination)) return false;
+            if (ReferenceEquals(this._request, null)) return false;
+            if (String.IsNullOrEmpty(this._request.Customer)) return false;
+            if (String.IsNullOrEmpty(this._request.Origin)) return false;
+            if (String.IsNullOrEmpty(this._request.Destination)) return false;
 
             return true;
         }
@@ -201,18 +155,18 @@ namespace CL.Javelin.Clients.Shared.ViewModels
 
         public void Reset()
         {
-            this.Request = new Request();
+            new AbstractRequestCopier().Copy(null, this._request); //reset to default values
             this.NotifyCommands();
         }
 
         public void SetRequest(Request request)
         {
-            this.Request = request;
+            new AbstractRequestCopier().Copy(request, this._request);
         }
 
         public Request GetRequest()
         {
-            return this.Request;
+            return new Request(this._request);
         }
     }
 }

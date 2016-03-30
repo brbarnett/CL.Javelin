@@ -3,8 +3,18 @@ using Newtonsoft.Json;
 
 namespace CL.Javelin.Core.Domain.Freight
 {
-    public class Request
+    public class Request : IRequest
     {
+        public Request()
+            : this(null)
+        {
+        }
+
+        public Request(IRequest request)
+        {
+            new AbstractRequestCopier().Copy(request, this);
+        }
+
         [JsonProperty(PropertyName = "id")]
         public Guid Id { get; set; }
 
@@ -14,15 +24,15 @@ namespace CL.Javelin.Core.Domain.Freight
 
         public string Destination { get; set; }
 
-        public DateTime Deadline { get; set; } = DateTime.Today.Date;
+        public DateTime Deadline { get; set; }
 
-        public bool Open { get; set; } = true;
+        public bool Open { get; set; }
 
-        public int Weight { get; set; } = 0;
+        public int Weight { get; set; }
 
-        public int Skids { get; set; } = 0;
+        public int Skids { get; set; }
 
-        public int Pieces { get; set; } = 0;
+        public int Pieces { get; set; }
 
         public string HazardClass { get; set; }
     }
