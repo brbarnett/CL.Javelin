@@ -40,12 +40,10 @@
 
     <Style x:Key="BoardListViewItemContainerStyleEvenFulfillment" TargetType="ListViewItem" BasedOn="{StaticResource BoardListViewItemContainerStyleBase}">
         <Setter Property="Background" Value="{StaticResource CoyoteYellowCoolLightAlpha}"/>
-        <Setter Property="Foreground" Value="{ThemeResource ApplicationPageBackgroundThemeBrush}"/>
     </Style>
 
     <Style x:Key="BoardListViewItemContainerStyleOdd" TargetType="ListViewItem" BasedOn="{StaticResource BoardListViewItemContainerStyleBase}">
         <Setter Property="Background" Value="{StaticResource CoyoteGreenCoolLightAlpha}"/>
-        <Setter Property="Foreground" Value="{ThemeResource ApplicationPageBackgroundThemeBrush}"/>
     </Style>
 
    

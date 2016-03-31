@@ -21,11 +21,11 @@
     <Color x:Key="CoyoteBlueCoolLightAlpha">#96C7E7FC</Color>
     <Color x:Key="CoyoteBlueCoolDarkAlpha">#96BDDCEF</Color>
 
-    <Color x:Key="CoyoteYellowCoolLight">#FDFE8C</Color>
-    <Color x:Key="CoyoteYellowCoolDark">#E5E580</Color>
+    <Color x:Key="CoyoteYellowCoolLight">#FDFE22</Color>
+    <Color x:Key="CoyoteYellowCoolDark">#FDFE22</Color>
 
-    <Color x:Key="CoyoteYellowCoolLightAlpha">#96FDFE8C</Color>
-    <Color x:Key="CoyoteYellowCoolAlpha">#96E5E580</Color>
+    <Color x:Key="CoyoteYellowCoolLightAlpha">#D7FDFE22</Color>
+    <Color x:Key="CoyoteYellowCoolAlpha">#D7FDFE22</Color>
 
     <SolidColorBrush x:Key="CoyoteTextSalesBrush" Color="#FFFFFF" />
     <SolidColorBrush x:Key="CoyoteTextFulfillmentBrush" Color="#FFFFFF" />
