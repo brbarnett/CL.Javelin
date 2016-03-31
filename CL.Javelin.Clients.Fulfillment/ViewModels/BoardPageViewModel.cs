@@ -7,10 +7,6 @@ namespace CL.Javelin.Clients.Fulfillment.ViewModels
 {
     public class BoardPageViewModel : BoardPageViewModelBase
     {
-        public ICommand ToggleSelectedRequestOpenCommand { get; private set; }
-
-        public ICommand DeleteSelectedRequestCommand { get; private set; }
-
         public BoardPageViewModel(IEventAggregator eventAggregator)
             : base(eventAggregator)
         {
