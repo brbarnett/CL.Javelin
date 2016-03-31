@@ -70,7 +70,7 @@
     <SolidColorBrush x:Key="SystemControlHighlightTransparentBrush" Color="#00FFFFFF" />
     <SolidColorBrush x:Key="SystemControlPageBackgroundAltMediumBrush" Color="#99000000" />
     <SolidColorBrush x:Key="SystemControlPageBackgroundBaseLowBrush" Color="#33FFFFFF" />
-    <SolidColorBrush x:Key="SystemControlPageTextBaseHighBrush" Color="#FFFFFFFF" />
+    <SolidColorBrush x:Key="SystemControlPageTextBaseHighBrush" Color="{StaticResource CoyoteGreenBase}" /><!--  Color="#FFFFFFFF" />-->
     <SolidColorBrush x:Key="TextBoxButtonBackgroundThemeBrush" Color="#00FFFFFF" />
     <SolidColorBrush x:Key="TextBoxButtonBorderThemeBrush" Color="#00FFFFFF" />
 
