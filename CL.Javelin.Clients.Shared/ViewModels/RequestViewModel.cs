@@ -194,7 +194,7 @@ namespace CL.Javelin.Clients.Shared.ViewModels
             if (this.CanUpdate())
             {
                 Request request = this.GetDomainRequest();
-                await Http.Post(serviceUri, request);
+                await Http.Put(serviceUri, request);
             }
         }
 
