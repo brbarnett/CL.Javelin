@@ -43,6 +43,7 @@
     <Compile Include="Freight\IAbstractCopier.cs" />
     <Compile Include="Freight\IPropertyChangeTransaction.cs" />
     <Compile Include="Freight\IRequest.cs" />
+    <Compile Include="Freight\IViewModelDraft.cs" />
     <Compile Include="Freight\Request.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

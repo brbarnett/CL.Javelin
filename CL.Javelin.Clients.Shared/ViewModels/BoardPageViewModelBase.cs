@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.UI.Core;
+using Windows.UI.Xaml;
 using CL.Javelin.Clients.Shared.Events.Freight.Request;
 using CL.Javelin.Core.Domain.Freight;
 using Prism.Events;
@@ -13,11 +14,16 @@ using Prism.Windows.Navigation;
 
 namespace CL.Javelin.Clients.Shared.ViewModels
 {
-    public abstract class BoardPageViewModelBase : ViewModelBase
+    public abstract class BoardPageViewModelBase : ViewModelBase, IResourcesAwareViewModel
     {
         private readonly IEventAggregator _eventAggregator;
 
-        private ObservableCollection<RequestViewModel> _requests = new ObservableCollection<RequestViewModel>();
+        private ObservableCollection<RequestViewModel> _requests;
+
+        protected BoardPageViewModelBase()
+        {
+            this.Requests = new ObservableCollection<RequestViewModel>();
+        }
 
         public ObservableCollection<RequestViewModel> Requests
         {
@@ -79,7 +85,11 @@ namespace CL.Javelin.Clients.Shared.ViewModels
                 await DispatchAsync(
                     CoreDispatcherPriority.Normal, () =>
                     {
-                        this.Requests.Add(new RequestViewModel(null, this.ServiceUri));
+                        this.Requests.Add(new RequestViewModel(request, this.ServiceUri));
+                        if (request.Id == this.SelectedRequest.Id)
+                        {
+                            this.SelectedRequest = new RequestViewModel(null, this.ServiceUri);
+                        }
                     });
             });
 
@@ -107,6 +117,11 @@ namespace CL.Javelin.Clients.Shared.ViewModels
                         if (toRemove == null) return;
 
                         this.Requests.Remove(toRemove);
+
+                        if (toRemove.Id == this.SelectedRequest.Id)
+                        {
+                            this.SelectedRequest = new RequestViewModel(null, this.ServiceUri);
+                        }
                     });
             });
         }
@@ -121,5 +136,7 @@ namespace CL.Javelin.Clients.Shared.ViewModels
                 priority,
                 agileCallback);
         }
+
+        public ResourceDictionary Resources { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using CL.Javelin.Clients.Shared.Views;
+﻿using Windows.UI;
+using CL.Javelin.Clients.Shared.Views;
 
 namespace CL.Javelin.Clients.Fulfillment.Views
 {

@@ -7,20 +7,60 @@
         <ResourceDictionary Source="Locations.xaml" />
         <ResourceDictionary Source="HazardClasses.xaml" />
     </ResourceDictionary.MergedDictionaries>
-    
+
     <ResourceDictionary.ThemeDictionaries>
-       <ResourceDictionary x:Key="Default">
+        <ResourceDictionary x:Key="Default">
+            <Color x:Key="CoyoteGreen">#41FF23</Color>
+            <Color x:Key="CoyoteBlue">#22A5FE</Color>
+            <Color x:Key="CoyoteYellow">#FDFE22</Color>
+        </ResourceDictionary>
+        <ResourceDictionary x:Key="Dark">
+            <Color x:Key="CoyoteGreen">#41FF23</Color>
+            <Color x:Key="CoyoteBlue">#22A5FE</Color>
+            <Color x:Key="CoyoteYellow">#FDFE22</Color>
+        </ResourceDictionary>
+        <ResourceDictionary x:Key="Light">
             <Color x:Key="CoyoteGreen">#41FF23</Color>
             <Color x:Key="CoyoteBlue">#22A5FE</Color>
             <Color x:Key="CoyoteYellow">#FDFE22</Color>
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
-
+   
     <BitmapImage x:Key="CoyoteLogoSales" UriSource="../Assets/CoyoteLogoSales.jpg" />
     <BitmapImage x:Key="CoyoteLogoFulfillment" UriSource="../Assets/CoyoteLogoFulfillment.jpg" />
 
-    <views:BoardListViewItemStyleSelector x:Key="BoardListViewItemStyleSelector" 
-                                          StyleEven="{StaticResource BoardListViewItemContainerStyleEven}"
+    <SolidColorBrush x:Key="CoyoteGreenBrush" Color="{StaticResource CoyoteGreen}"/>
+
+    <Style TargetType="TextBox">
+        <Setter Property="BorderBrush" Value="{StaticResource CoyoteGreenBrush}"/>
+        <Setter Property="Background" Value="{StaticResource CoyoteGreenBrush}"/>
+    </Style>
+
+    <Style TargetType="views:BindableCalendarDatePicker">
+        <Setter Property="BorderBrush" Value="{StaticResource CoyoteGreenBrush}"/>
+        <Setter Property="Foreground" Value="{ThemeResource ApplicationPageBackgroundThemeBrush}"/>
+        <Setter Property="Background" Value="{StaticResource CoyoteGreenBrush}"/>
+    </Style>
+
+    <Style TargetType="Button">
+        <Setter Property="BorderBrush" Value="{StaticResource CoyoteGreenBrush}"/>
+        <Setter Property="Foreground" Value="{ThemeResource ApplicationPageBackgroundThemeBrush}"/>
+        <Setter Property="Background" Value="{StaticResource CoyoteGreenBrush}"/>
+    </Style>
+
+    <Style x:Key="ComboBoxViewModelStyle" TargetType="ComboBox">
+        <Setter Property="BorderBrush" Value="{StaticResource CoyoteGreenBrush}"/>
+        <Setter Property="Foreground" Value="{ThemeResource ApplicationPageBackgroundThemeBrush}"/>
+        <Setter Property="Background" Value="{StaticResource CoyoteGreenBrush}"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+    </Style>
+
+    <views:BoardListViewItemStyleSelector x:Key="BoardListViewItemStyleSelectorSales" 
+                                          StyleEven="{StaticResource BoardListViewItemContainerStyleEvenSales}"
+                                          StyleOdd="{StaticResource BoardListViewItemContainerStyleOdd}"/>
+
+    <views:BoardListViewItemStyleSelector x:Key="BoardListViewItemStyleSelectorFulfillment" 
+                                          StyleEven="{StaticResource BoardListViewItemContainerStyleEvenFulfillment}"
                                           StyleOdd="{StaticResource BoardListViewItemContainerStyleOdd}"/>
 
     <Style x:Key="BoardListViewItemContainerStyleBase" TargetType="ListViewItem">
@@ -28,8 +68,13 @@
         <Setter Property="HorizontalAlignment" Value="Stretch" />
     </Style>
 
-    <Style x:Key="BoardListViewItemContainerStyleEven" TargetType="ListViewItem" BasedOn="{StaticResource BoardListViewItemContainerStyleBase}">
-        <Setter Property="Background" Value="{StaticResource SystemListLowColor}"/>
+    <Style x:Key="BoardListViewItemContainerStyleEvenSales" TargetType="ListViewItem" BasedOn="{StaticResource BoardListViewItemContainerStyleBase}">
+        <Setter Property="Background" Value="{StaticResource CoyoteBlue}"/>
+    </Style>
+
+    <Style x:Key="BoardListViewItemContainerStyleEvenFulfillment" TargetType="ListViewItem" BasedOn="{StaticResource BoardListViewItemContainerStyleBase}">
+        <Setter Property="Background" Value="{StaticResource CoyoteYellow}"/>
+        <Setter Property="Foreground" Value="{ThemeResource ApplicationPageBackgroundThemeBrush}"/>
     </Style>
 
     <Style x:Key="BoardListViewItemContainerStyleOdd" TargetType="ListViewItem" BasedOn="{StaticResource BoardListViewItemContainerStyleBase}">
@@ -37,10 +82,7 @@
         <Setter Property="Foreground" Value="{ThemeResource ApplicationPageBackgroundThemeBrush}"/>
     </Style>
 
-    <Style x:Key="ComboBoxViewModelStyle" TargetType="ComboBox">
-        <Setter Property="HorizontalAlignment" Value="Stretch"/>
-    </Style>
-    
+   
     <DataTemplate x:Key="BoardListViewItemTemplate">
         <Grid>
             <Grid.ColumnDefinitions>

@@ -30,6 +30,8 @@ namespace CL.Javelin.Clients.Shared.Views
                     this.CoreDispatcher_AcceleratorKeyActivated;
                 Window.Current.CoreWindow.PointerPressed +=
                     this.CoreWindow_PointerPressed;
+
+                this.SetResourcesAwareRegistration(true);
             };
 
             // Undo the same changes when the page is no longer visible
@@ -39,6 +41,8 @@ namespace CL.Javelin.Clients.Shared.Views
                     this.CoreDispatcher_AcceleratorKeyActivated;
                 Window.Current.CoreWindow.PointerPressed -=
                     this.CoreWindow_PointerPressed;
+
+                this.SetResourcesAwareRegistration(false);
             };
         }
 

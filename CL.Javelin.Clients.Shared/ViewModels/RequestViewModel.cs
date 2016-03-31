@@ -9,7 +9,7 @@ using Prism.Windows.Mvvm;
 
 namespace CL.Javelin.Clients.Shared.ViewModels
 {
-    public class RequestViewModel : ViewModelBase, IRequest, IPropertyChangeTransaction
+    public class RequestViewModel : ViewModelBase, IRequest, IPropertyChangeTransaction, IViewModelDraft
     {
         private readonly List<DelegateCommand> _commandsWhenIsValidChanges;
 
@@ -21,20 +21,21 @@ namespace CL.Javelin.Clients.Shared.ViewModels
             this._commandsWhenIsValidChanges = new List<DelegateCommand>();
 
             //order matters here
-            Func<bool> isValid = () => this.IsValid;
-
+            
             if (!string.IsNullOrEmpty(serviceUri))
             {
-                this.DeleteCommand = new DelegateCommand(() => this.Delete(serviceUri), isValid);
+                this.DeleteCommand = new DelegateCommand(() => this.Delete(serviceUri), this.CanDelete);
                 this._commandsWhenIsValidChanges.Add(this._commandDelete);
 
-                this.UpdateCommand = new DelegateCommand(() => this.Update(serviceUri), isValid);
+                this.UpdateCommand = new DelegateCommand(() => this.Update(serviceUri), this.CanUpdate);
                 this._commandsWhenIsValidChanges.Add(this._commandUpdate);
 
-                this.AddCommand = new DelegateCommand(() => this.Add(serviceUri), isValid);
+                this.AddCommand = new DelegateCommand(() => this.Add(serviceUri), this.CanAdd);
                 this._commandsWhenIsValidChanges.Add(this._commandAdd);
             }
-            
+
+            IViewModelDraft viewModel = this;
+            viewModel.IsDraft = ReferenceEquals(request, null);
             new AbstractRequestCopier().Copy(request, this);
             //\
         }
@@ -118,12 +119,38 @@ namespace CL.Javelin.Clients.Shared.ViewModels
         {
             get
             {
-                if (string.IsNullOrEmpty(this.Customer)) return false;
-                if (string.IsNullOrEmpty(this.Origin)) return false;
-                if (string.IsNullOrEmpty(this.Destination)) return false;
+                if (string.IsNullOrEmpty(this.Customer) ||
+                    string.IsNullOrEmpty(this.Origin) ||
+                    string.IsNullOrEmpty(this.Destination))
+                {
+                    return false;
+                }
 
                 return true;
             }
+        }
+
+        private bool CanAdd()
+        {
+            return Validate(true, true);
+        }
+
+        private bool CanUpdate()
+        {
+            return Validate(true, false);
+        }
+
+        private bool CanDelete()
+        {
+            return Validate(true, false);
+        }
+
+        private bool Validate(bool isValid, bool isDraft)
+        {
+            bool isValidResult = isValid ? this.IsValid : !this.IsValid;
+            bool isDraftResult = isDraft ? this.IsDraft : !this.IsDraft;
+
+            return isValidResult && isDraftResult;
         }
 
         private int _weight;
@@ -152,24 +179,41 @@ namespace CL.Javelin.Clients.Shared.ViewModels
             get { return this._hazardClass; }
             set { this.SetProperty(ref _hazardClass, value); }
         }
-        
+
+        public async void Add(string serviceUri)
+        {
+            if (this.CanAdd())
+            {
+                Request request = this.GetDomainRequest();
+                await Http.Post(serviceUri, request);
+            }
+        }
+
+        public async void Update(string serviceUri)
+        {
+            if (this.CanUpdate())
+            {
+                Request request = this.GetDomainRequest();
+                await Http.Post(serviceUri, request);
+            }
+        }
+
         public async void Delete(string serviceUri)
         {
-            if (!this.IsValid)
+            if (this.CanDelete())
             {
-                return;
+                await Http.Delete(serviceUri + $"/{this.Id}");
             }
-
-            await Http.Delete(serviceUri + $"/{this.GetDomainRequest().Id}");
         }
 
         protected override bool SetProperty<T>(ref T storage, T value, [CallerMemberName] string propertyName = null)
         {
+            // ReSharper disable once ExplicitCallerInfoArgument
             bool wasChanged = base.SetProperty(ref storage, value, propertyName);
             if (wasChanged)
             {
                 if (!this._isInTransaction &&
-                    this.Id != Guid.Empty &&
+                    this.CanUpdate() && //implies UpdateCommand.CanExecute when UpdateCommand != null
                     !ReferenceEquals(this.UpdateCommand, null) &&
                     this.UpdateCommand.CanExecute(this))
                 {
@@ -179,29 +223,9 @@ namespace CL.Javelin.Clients.Shared.ViewModels
             return wasChanged;
         }
 
-        public async void Update(string serviceUri)
-        {
-            if (this.IsValid)
-            {
-                Request request = this.GetDomainRequest();
-                await Http.Post(serviceUri, request);
-            }
-        }
-
-        public async void Add(string serviceUri)
-        {
-            if (this.IsValid)
-            {
-                this.Id = Guid.NewGuid();
-                Request request = this.GetDomainRequest();
-                await Http.Post(serviceUri, request);
-            }
-        }
-
         protected virtual void OnIsValidChanged()
         {
-            // ReSharper disable once ExplicitCallerInfoArgument
-            this.OnPropertyChanged("IsValid");
+            //this.OnPropertyChanged("IsValid");
 
             if (!ReferenceEquals(this._commandsWhenIsValidChanges, null))
             {
@@ -249,5 +273,7 @@ namespace CL.Javelin.Clients.Shared.ViewModels
         {
             this._isInTransaction = false;
         }
+
+        public bool IsDraft { get; set; }
     }
 }

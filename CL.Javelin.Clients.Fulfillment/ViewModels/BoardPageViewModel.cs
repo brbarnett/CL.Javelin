@@ -14,6 +14,7 @@ namespace CL.Javelin.Clients.Fulfillment.ViewModels
         public BoardPageViewModel(IEventAggregator eventAggregator)
             : base(eventAggregator)
         {
+            
         }
 
         protected override string ServiceUri { get { return "http://127.0.0.1:9003/freight/requests"; } }
