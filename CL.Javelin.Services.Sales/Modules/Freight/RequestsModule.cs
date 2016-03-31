@@ -6,13 +6,13 @@ using CL.Javelin.Core.Utilities;
 using Nancy;
 using Nancy.ModelBinding;
 
-namespace CL.Javelin.Services.Sales.Routes.Freight
+namespace CL.Javelin.Services.Sales.Modules.Freight
 {
-    public class RequestRoutes : NancyModule
+    public class RequestsModule : NancyModule
     {
         private const string BaseUrl = "/freight/requests";
 
-        public RequestRoutes()
+        public RequestsModule()
         {
             base.Get[$"{BaseUrl}"] = this.GetFreightRequests;
             base.Post[$"{BaseUrl}"] = this.CreateFreightRequest;

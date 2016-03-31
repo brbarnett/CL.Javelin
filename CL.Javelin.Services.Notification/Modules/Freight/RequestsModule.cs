@@ -5,15 +5,15 @@ using Microsoft.AspNet.SignalR;
 using Nancy;
 using Nancy.ModelBinding;
 
-namespace CL.Javelin.Services.Notification.Routes.Freight
+namespace CL.Javelin.Services.Notification.Modules.Freight
 {
-    public class RequestRoutes : NancyModule
+    public class RequestsModule : NancyModule
     {
         private readonly IHubContext _notificationHubContext;
 
         private const string BaseUrl = "/freight/requests";
 
-        public RequestRoutes()
+        public RequestsModule()
         {
             this._notificationHubContext = GlobalHost.ConnectionManager.GetHubContext<NotificationHub>();
 

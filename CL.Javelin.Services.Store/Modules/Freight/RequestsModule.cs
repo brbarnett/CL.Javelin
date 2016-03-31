@@ -12,16 +12,16 @@ using Nancy.ModelBinding;
 using Nancy.Responses;
 using Newtonsoft.Json;
 
-namespace CL.Javelin.Services.Store.Routes.Freight
+namespace CL.Javelin.Services.Store.Modules.Freight
 {
-    public class RequestRoutes : NancyModule
+    public class RequestsModule : NancyModule
     {
         private const string BaseUrl = "/freight/requests";
         private const string DbPath = "dbs/Javelin/colls/FreightRequests";
 
         private readonly DocumentClient _dbClient;
 
-        public RequestRoutes(DocumentClient dbClient)
+        public RequestsModule(DocumentClient dbClient)
         {
             if (dbClient == null) throw new ArgumentNullException(nameof(dbClient));
             this._dbClient = dbClient;
