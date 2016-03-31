@@ -8,6 +8,11 @@ namespace CL.Javelin.Core.Domain.Freight
         {
             if (!ReferenceEquals(destination, null))
             {
+                IPropertyChangeTransaction transactionDestination = destination as IPropertyChangeTransaction;
+                if (!ReferenceEquals(transactionDestination, null))
+                {
+                    transactionDestination.BeginTransaction();
+                }
                 if (ReferenceEquals(source, null))
                 {
                     destination.Id = default(Guid);
@@ -33,6 +38,10 @@ namespace CL.Javelin.Core.Domain.Freight
                     destination.Skids = source.Skids;
                     destination.Pieces = source.Pieces;
                     destination.HazardClass = source.HazardClass;
+                }
+                if (!ReferenceEquals(transactionDestination, null))
+                {
+                    transactionDestination.Commit();
                 }
             }
         }

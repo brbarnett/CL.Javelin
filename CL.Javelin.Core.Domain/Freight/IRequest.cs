@@ -12,7 +12,7 @@ namespace CL.Javelin.Core.Domain.Freight
 
         string Destination { get; set; }
 
-        DateTime Deadline { get; set; }
+        DateTimeOffset? Deadline { get; set; }
 
         bool Open { get; set; }
 

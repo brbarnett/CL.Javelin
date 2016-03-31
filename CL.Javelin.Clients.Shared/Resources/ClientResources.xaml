@@ -69,7 +69,7 @@
 
             <TextBlock Grid.Column="3">
                             <Run Text="Deadline:"></Run>
-                            <Run Text="{Binding Deadline, Converter={StaticResource DateTimeToDateConverter}}"></Run>
+                            <Run Text="{Binding Deadline, Converter={StaticResource DateTimeOffsetToDateConverter}}"></Run>
             </TextBlock>
 
             <TextBlock Grid.Column="4">

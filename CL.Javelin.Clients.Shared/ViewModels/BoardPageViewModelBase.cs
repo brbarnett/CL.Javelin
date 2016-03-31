@@ -17,17 +17,17 @@ namespace CL.Javelin.Clients.Shared.ViewModels
     {
         private readonly IEventAggregator _eventAggregator;
 
-        private ObservableCollection<RequestFormViewModel> _requests = new ObservableCollection<RequestFormViewModel>();
+        private ObservableCollection<RequestViewModel> _requests = new ObservableCollection<RequestViewModel>();
 
-        public ObservableCollection<RequestFormViewModel> Requests
+        public ObservableCollection<RequestViewModel> Requests
         {
             get { return this._requests; }
             private set { base.SetProperty(ref this._requests, value); }
         }
 
-        private RequestFormViewModel _selectedRequest;
+        private RequestViewModel _selectedRequest;
 
-        public RequestFormViewModel SelectedRequest
+        public RequestViewModel SelectedRequest
         {
             get
             {
@@ -37,7 +37,7 @@ namespace CL.Javelin.Clients.Shared.ViewModels
             {
                 if (ReferenceEquals(value, null))
                 {
-                    value = this.CreateRequestFormViewModel(null);
+                    value = new RequestViewModel(null, this.ServiceUri);
                 }
                 if (this.SetProperty(ref this._selectedRequest, value))
                 {
@@ -53,6 +53,9 @@ namespace CL.Javelin.Clients.Shared.ViewModels
                 throw new ArgumentNullException(nameof(eventAggregator));
             }
             this._eventAggregator = eventAggregator;
+
+            //this forces a blank request to be created
+            this.SelectedRequest = null;
         }
 
         public sealed override async void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
@@ -64,12 +67,10 @@ namespace CL.Javelin.Clients.Shared.ViewModels
         private async Task Load()
         {
             IEnumerable<Request> requests = await Core.Utilities.Http.Get<IEnumerable<Request>>(this.ServiceUri);
-            this.Requests = new ObservableCollection<RequestFormViewModel>(requests.Select(x => this.CreateRequestFormViewModel(x)));
+            this.Requests = new ObservableCollection<RequestViewModel>(requests.Select(x => new RequestViewModel(x, this.ServiceUri)));
         }
 
         protected abstract string ServiceUri { get; }
-
-        protected abstract RequestFormViewModel CreateRequestFormViewModel(IRequest request);
 
         private void ConnectToNotificationHub()
         {
@@ -78,7 +79,7 @@ namespace CL.Javelin.Clients.Shared.ViewModels
                 await DispatchAsync(
                     CoreDispatcherPriority.Normal, () =>
                     {
-                        this.Requests.Add(this.CreateRequestFormViewModel(request));
+                        this.Requests.Add(new RequestViewModel(null, this.ServiceUri));
                     });
             });
 
@@ -87,12 +88,12 @@ namespace CL.Javelin.Clients.Shared.ViewModels
                 await DispatchAsync(
                     CoreDispatcherPriority.Normal, () =>
                     {
-                        RequestFormViewModel existing = this.Requests.SingleOrDefault(x => x.Id == request.Id);
+                        RequestViewModel existing = this.Requests.SingleOrDefault(x => x.Id == request.Id);
 
                         if (existing == null) return;
 
                         int index = this.Requests.IndexOf(existing);
-                        this.Requests[index] = this.CreateRequestFormViewModel(request);
+                        this.Requests[index] = new RequestViewModel(request, this.ServiceUri);
                     });
             });
 
@@ -101,7 +102,7 @@ namespace CL.Javelin.Clients.Shared.ViewModels
                 await DispatchAsync(
                     CoreDispatcherPriority.Normal, () =>
                     {
-                        RequestFormViewModel toRemove = this.Requests.SingleOrDefault(x => x.Id == request.Id);
+                        RequestViewModel toRemove = this.Requests.SingleOrDefault(x => x.Id == request.Id);
 
                         if (toRemove == null) return;
 

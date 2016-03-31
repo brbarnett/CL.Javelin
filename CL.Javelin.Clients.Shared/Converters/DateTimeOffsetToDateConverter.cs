@@ -3,25 +3,26 @@ using Windows.UI.Xaml.Data;
 
 namespace CL.Javelin.Clients.Shared.Converters
 {
-    public class DateTimeToDateConverter : IValueConverter
+    public class DateTimeOffsetToDateConverter : IValueConverter
     {
 
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            try
+            if (value is DateTimeOffset)
             {
-                DateTime date = (DateTime)value;
+                DateTime date = ((DateTimeOffset)value).DateTime;
                 return date.ToString("MM/dd/yyyy");
             }
-            catch (Exception ex)
-            {
-                return String.Empty;
-            }
+            return string.Empty;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
         {
-            throw new NotImplementedException();
+            if (value is string)
+            {
+                return DateTimeOffset.Parse(value.ToString());
+            }
+            return DateTimeOffset.MinValue;
         }
     }
 

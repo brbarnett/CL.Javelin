@@ -98,11 +98,12 @@
 
                     <StackPanel Grid.Row="0" Padding="20 5">
                         <TextBlock Text="Deadline:" />
-                        <CalendarDatePicker 
+                        <shared:BindableCalendarDatePicker 
                             DisplayMode="Month"
                             IsTodayHighlighted="True"
-                            MinDate="{Binding Today, Mode=OneWay, Converter={StaticResource DateTimeToDateTimeOffsetConverter}}"
-                            Date="{Binding Deadline, Mode=TwoWay, Converter={StaticResource DateTimeToDateTimeOffsetConverter}}"
+                            MinDate="{Binding MinDate, Mode=OneTime}"
+                            MaxDate="{Binding MaxDate, Mode=OneTime}"
+                            SelectedValue="{Binding Deadline, Mode=TwoWay}"
                             HorizontalAlignment="Stretch" />
                     </StackPanel>
                     <StackPanel Grid.Row="1" Padding="20 5">
@@ -142,7 +143,7 @@
             <Button 
                 Grid.Column="2" 
                 Content="Add New"
-                Command="{Binding AddFreightRequestCommand}"
+                Command="{Binding AddCommand}"
                 HorizontalAlignment="Center" 
                 VerticalAlignment="Top" 
                 Margin="10" />

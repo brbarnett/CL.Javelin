@@ -5,8 +5,6 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:prismMvvm="using:Prism.Windows.Mvvm"
-    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
-    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:shared="using:CL.Javelin.Clients.Shared.Views"
     x:Uid="Page"
     x:Name="pageRoot"
@@ -43,13 +41,7 @@
             ItemsSource="{Binding Requests}"
             SelectedItem="{Binding SelectedRequest, Mode=TwoWay}"
             ItemContainerStyleSelector="{StaticResource BoardListViewItemStyleSelector}"
-            ItemTemplate="{StaticResource BoardListViewItemTemplate}"
-            >
-            <interactivity:Interaction.Behaviors>
-                <core:EventTriggerBehavior EventName="SelectionChanged">
-                    <core:InvokeCommandAction Command="{Binding ChangeSelectedRequestCommand}" CommandParameter="{Binding ElementName=BoardListView, Path=SelectedItem}" />
-                </core:EventTriggerBehavior>
-            </interactivity:Interaction.Behaviors>
+            ItemTemplate="{StaticResource BoardListViewItemTemplate}">
         </ListView>
 
         <Grid Grid.Row="2"
@@ -104,11 +96,12 @@
 
                     <StackPanel Grid.Row="0" Padding="20 5">
                         <TextBlock Text="Deadline:" />
-                        <CalendarDatePicker 
+                        <shared:BindableCalendarDatePicker 
                             DisplayMode="Month"
                             IsTodayHighlighted="True"
-                            MinDate="{Binding Today, Mode=OneWay, Converter={StaticResource DateTimeToDateTimeOffsetConverter}}"
-                            Date="{Binding Deadline, Mode=TwoWay, Converter={StaticResource DateTimeToDateTimeOffsetConverter}}"
+                            MinDate="{Binding MinDate, Mode=OneTime}"
+                            MaxDate="{Binding MaxDate, Mode=OneTime}"
+                            SelectedValue="{Binding Deadline, Mode=TwoWay}"
                             HorizontalAlignment="Stretch" />
                     </StackPanel>
                     <StackPanel Grid.Row="1" Padding="20 5">
@@ -124,8 +117,7 @@
 
             <StackPanel 
                 Grid.Column="2">
-                <Button Content="Toggle Fulfilled" Command="{Binding ToggleSelectedRequestOpenCommand}" HorizontalAlignment="Stretch" Margin="10" />
-                <Button Content="Delete" Command="{Binding DeleteSelectedRequestCommand}" HorizontalAlignment="Stretch" Margin="10" />
+                <Button Content="Delete" Command="{Binding DeleteCommand}" HorizontalAlignment="Stretch" Margin="10" />
             </StackPanel>
         </Grid>
     </Grid>
