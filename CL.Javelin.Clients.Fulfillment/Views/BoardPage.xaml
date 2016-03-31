@@ -105,11 +105,11 @@
                             HorizontalAlignment="Stretch" />
                     </StackPanel>
                     <StackPanel Grid.Row="1" Padding="20 5">
-                        <TextBlock Text="Open:" />
+                        <TextBlock Text="Fulfilled:" />
                         <ToggleSwitch 
-                            OnContent="Open" 
-                            OffContent="Closed" 
-                            IsOn="{Binding Open, Mode=TwoWay}"/>
+                            OnContent="Fulfilled" 
+                            OffContent="Open" 
+                            IsOn="{Binding Open, Mode=TwoWay, Converter={StaticResource InvertBooleanConverter}}"/>
                     </StackPanel>
                 </Grid>
 
