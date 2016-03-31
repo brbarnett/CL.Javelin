@@ -81,8 +81,8 @@ namespace CL.Javelin.Services.Store.Modules.Freight
 
             Document document = await this._dbClient.CreateDocumentAsync(DbPath, request);
 
-            // created, now notify
-            await Core.Utilities.Http.Post($"{Constants.Services.Notification.BaseEndpointUrl}/freight/requests/created", request);
+            // created, now notify. do not await
+            Core.Utilities.Http.Post($"{Constants.Services.Notification.BaseEndpointUrl}/freight/requests/created", request);
 
             return new TextResponse(Nancy.HttpStatusCode.OK, JsonConvert.SerializeObject(request), Encoding.UTF8);
         }
@@ -95,8 +95,8 @@ namespace CL.Javelin.Services.Store.Modules.Freight
 
             Document document = await this._dbClient.UpsertDocumentAsync(DbPath, request);
 
-            // created, now notify
-            await Core.Utilities.Http.Post($"{Constants.Services.Notification.BaseEndpointUrl}/freight/requests/updated", request);
+            // updated, now notify. do not await
+            Core.Utilities.Http.Post($"{Constants.Services.Notification.BaseEndpointUrl}/freight/requests/updated", request);
 
             return new TextResponse(Nancy.HttpStatusCode.OK, JsonConvert.SerializeObject(request), Encoding.UTF8);
         }
@@ -117,8 +117,8 @@ namespace CL.Javelin.Services.Store.Modules.Freight
 
             await this._dbClient.DeleteDocumentAsync(freightRequest.SelfLink);
 
-            // created, now notify
-            await Core.Utilities.Http.Post($"{Constants.Services.Notification.BaseEndpointUrl}/freight/requests/deleted", freightRequest);
+            // deleted, now notify. do not await
+            Core.Utilities.Http.Post($"{Constants.Services.Notification.BaseEndpointUrl}/freight/requests/deleted", freightRequest);
 
             return new TextResponse(Nancy.HttpStatusCode.OK, JsonConvert.SerializeObject(new { Id = id }), Encoding.UTF8);
         }
