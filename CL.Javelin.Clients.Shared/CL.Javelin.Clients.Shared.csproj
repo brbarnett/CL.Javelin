@@ -122,7 +122,7 @@
     <Compile Include="Views\BindableCalendarDatePicker.cs" />
     <Compile Include="Views\NavigationAwarePage.cs" />
     <Compile Include="Views\ResourceExtensions.cs" />
-    <Compile Include="Views\SystemColors.cs" />
+    <Compile Include="Views\ThemeBrushes.cs" />
     <Compile Include="Views\ThemeTestPage.xaml.cs">
       <DependentUpon>ThemeTestPage.xaml</DependentUpon>
     </Compile>

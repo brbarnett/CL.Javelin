@@ -35,6 +35,8 @@ namespace CL.Javelin.Clients.Shared.Views
             {
                 ResourceDictionary resources = sender.Resources;
                 resourcesAwareViewModel.Resources = resources;
+
+                ThemeBrushes.Initialize(resources);
             }
         }
     }

@@ -28,7 +28,15 @@
             </Grid.ColumnDefinitions>
 
             <Image Grid.Column="1" Source="{StaticResource CoyoteLogoSales}" Height="50" Width="50"></Image>
-            <TextBlock Grid.Column="2" Text="Javelin Sales" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontWeight="Bold"></TextBlock>
+            <TextBlock Grid.Column="2" 
+                       Text="Javelin Sales"
+                       Foreground="{StaticResource CoyoteTextSalesBrush}"
+                       HorizontalAlignment="Center" 
+                       VerticalAlignment="Center" 
+                       FontSize="20" 
+                       FontWeight="Bold">
+                
+            </TextBlock>
         </Grid>
 
         <ListView 

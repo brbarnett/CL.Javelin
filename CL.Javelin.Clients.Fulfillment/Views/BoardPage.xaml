@@ -28,7 +28,13 @@
             </Grid.ColumnDefinitions>
 
             <Image Grid.Column="1" Source="{StaticResource CoyoteLogoFulfillment}" Height="50" Width="50"></Image>
-            <TextBlock Grid.Column="2" Text="Javelin Fulfillment" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontWeight="Bold"></TextBlock>
+            <TextBlock Grid.Column="2" 
+                       Text="Javelin Fulfillment"
+                       Foreground="{StaticResource CoyoteTextFulfillmentBrush}"
+                       HorizontalAlignment="Center" 
+                       VerticalAlignment="Center" 
+                       FontSize="20" 
+                       FontWeight="Bold"></TextBlock>
         </Grid>
 
         <ListView 
