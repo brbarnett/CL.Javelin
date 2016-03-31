@@ -1,0 +1,57 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <Color x:Key="CoyoteGreen">#41FF23</Color>
+    <Color x:Key="CoyoteBlue">#22A5FE</Color>
+    <Color x:Key="CoyoteYellow">#FDFE22</Color>
+    
+    <SolidColorBrush x:Key="SystemControlPageTextBaseHighBrush" Color="{StaticResource CoyoteGreen}" />
+    <SolidColorBrush x:Key="TextBoxButtonBorderThemeBrush" Color="{StaticResource CoyoteGreen}" />
+    <SolidColorBrush x:Key="SystemControlForegroundBaseHighBrush" Color="{StaticResource CoyoteGreen}" />
+    <SolidColorBrush x:Key="SystemControlHighlightAccentBrush" Color="{StaticResource CoyoteGreen}" />
+    
+<!-- TODO Complete set of UWP Theme Brushes:
+    
+    SystemControlBackgroundAltHighBrush
+    SystemControlBackgroundAltMediumLowBrush
+    SystemControlBackgroundBaseLowBrush
+    SystemControlBackgroundBaseMediumBrush
+    SystemControlBackgroundBaseMediumLowBrush
+    SystemControlBackgroundChromeMediumLowBrush
+    SystemControlBackgroundListMediumBrush
+    SystemControlDisabledBaseLowBrush
+    SystemControlDisabledBaseMediumLowBrush
+    SystemControlDisabledChromeDisabledHighBrush
+    SystemControlDisabledTransparentBrush
+    SystemControlForegroundAccentBrush
+    SystemControlForegroundBaseHighBrush
+    SystemControlForegroundBaseLowBrush
+    SystemControlForegroundBaseMediumBrush
+    SystemControlForegroundBaseMediumHighBrush
+    SystemControlForegroundBaseMediumLowBrush
+    SystemControlForegroundChromeBlackMediumBrush
+    SystemControlForegroundChromeDisabledLowBrush
+    SystemControlForegroundTransparentBrush
+    SystemControlHighlightAccentBrush
+    SystemControlHighlightAltAccentBrush
+    SystemControlHighlightAltBaseHighBrush
+    SystemControlHighlightAltBaseMediumBrush
+    SystemControlHighlightAltBaseMediumHighBrush
+    SystemControlHighlightAltChromeWhiteBrush
+    SystemControlHighlightAltTransparentBrush
+    SystemControlHighlightBaseHighBrush
+    SystemControlHighlightBaseMediumBrush
+    SystemControlHighlightBaseMediumLowBrush
+    SystemControlHighlightChromeAltLowBrush
+    SystemControlHighlightChromeHighBrush
+    SystemControlHighlightListAccentHighBrush
+    SystemControlHighlightListAccentLowBrush
+    SystemControlHighlightTransparentBrush
+    SystemControlPageBackgroundAltMediumBrush
+    SystemControlPageBackgroundBaseLowBrush
+    SystemControlPageTextBaseHighBrush
+    TextBoxButtonBackgroundThemeBrush
+    TextBoxButtonBorderThemeBrush
+-->
+</ResourceDictionary>

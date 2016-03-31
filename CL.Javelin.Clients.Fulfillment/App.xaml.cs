@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
 using CL.Javelin.Clients.Shared.Events.Freight.Request;
+using CL.Javelin.Clients.Shared.Views;
 using CL.Javelin.Core.Domain.Freight;
 using Microsoft.AspNet.SignalR.Client;
 using Microsoft.Practices.Unity;
@@ -81,6 +82,15 @@ namespace CL.Javelin.Clients.Fulfillment
             hubConnection.Start().Wait();
 
             return base.OnInitializeAsync(args);
+        }
+
+        protected override Type GetPageType(string pageToken)
+        {
+            if (string.Equals(pageToken, "ThemeTest"))
+            {
+                return typeof (ThemeTestPage);
+            }
+            return base.GetPageType(pageToken);
         }
     }
 }

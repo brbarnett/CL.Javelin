@@ -123,6 +123,9 @@
     <Compile Include="Views\NavigationAwarePage.cs" />
     <Compile Include="Views\ResourceExtensions.cs" />
     <Compile Include="Views\SystemColors.cs" />
+    <Compile Include="Views\ThemeTestPage.xaml.cs">
+      <DependentUpon>ThemeTestPage.xaml</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\CL.Javelin.Clients.Shared.rd.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -155,6 +158,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="Resources\ThemeOverrides.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="Views\ThemeTestPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>

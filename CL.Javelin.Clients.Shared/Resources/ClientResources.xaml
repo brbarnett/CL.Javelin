@@ -9,49 +9,15 @@
     </ResourceDictionary.MergedDictionaries>
 
     <ResourceDictionary.ThemeDictionaries>
-        <ResourceDictionary x:Key="Default">
-            <Color x:Key="CoyoteGreen">#41FF23</Color>
-            <Color x:Key="CoyoteBlue">#22A5FE</Color>
-            <Color x:Key="CoyoteYellow">#FDFE22</Color>
-        </ResourceDictionary>
-        <ResourceDictionary x:Key="Dark">
-            <Color x:Key="CoyoteGreen">#41FF23</Color>
-            <Color x:Key="CoyoteBlue">#22A5FE</Color>
-            <Color x:Key="CoyoteYellow">#FDFE22</Color>
-        </ResourceDictionary>
-        <ResourceDictionary x:Key="Light">
-            <Color x:Key="CoyoteGreen">#41FF23</Color>
-            <Color x:Key="CoyoteBlue">#22A5FE</Color>
-            <Color x:Key="CoyoteYellow">#FDFE22</Color>
-        </ResourceDictionary>
+        <ResourceDictionary x:Key="Default" Source="ThemeOverrides.xaml" />
+        <ResourceDictionary x:Key="Dark" Source="ThemeOverrides.xaml" />
+        <ResourceDictionary x:Key="Light" Source="ThemeOverrides.xaml" />
     </ResourceDictionary.ThemeDictionaries>
    
     <BitmapImage x:Key="CoyoteLogoSales" UriSource="../Assets/CoyoteLogoSales.jpg" />
     <BitmapImage x:Key="CoyoteLogoFulfillment" UriSource="../Assets/CoyoteLogoFulfillment.jpg" />
 
-    <SolidColorBrush x:Key="CoyoteGreenBrush" Color="{StaticResource CoyoteGreen}"/>
-
-    <Style TargetType="TextBox">
-        <Setter Property="BorderBrush" Value="{StaticResource CoyoteGreenBrush}"/>
-        <Setter Property="Background" Value="{StaticResource CoyoteGreenBrush}"/>
-    </Style>
-
-    <Style TargetType="views:BindableCalendarDatePicker">
-        <Setter Property="BorderBrush" Value="{StaticResource CoyoteGreenBrush}"/>
-        <Setter Property="Foreground" Value="{ThemeResource ApplicationPageBackgroundThemeBrush}"/>
-        <Setter Property="Background" Value="{StaticResource CoyoteGreenBrush}"/>
-    </Style>
-
-    <Style TargetType="Button">
-        <Setter Property="BorderBrush" Value="{StaticResource CoyoteGreenBrush}"/>
-        <Setter Property="Foreground" Value="{ThemeResource ApplicationPageBackgroundThemeBrush}"/>
-        <Setter Property="Background" Value="{StaticResource CoyoteGreenBrush}"/>
-    </Style>
-
     <Style x:Key="ComboBoxViewModelStyle" TargetType="ComboBox">
-        <Setter Property="BorderBrush" Value="{StaticResource CoyoteGreenBrush}"/>
-        <Setter Property="Foreground" Value="{ThemeResource ApplicationPageBackgroundThemeBrush}"/>
-        <Setter Property="Background" Value="{StaticResource CoyoteGreenBrush}"/>
         <Setter Property="HorizontalAlignment" Value="Stretch"/>
     </Style>
 
