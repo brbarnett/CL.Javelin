@@ -3,15 +3,32 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     
     <Color x:Key="CoyoteGreenBase">#41FF23</Color>
+    <Color x:Key="CoyoteBlueBase">#22A5FE</Color>
+    <Color x:Key="CoyoteYellowBase">#FDFE22</Color>
 
-    <Color x:Key="CoyoteGreenCoolLight">#41FF23</Color>
-    <Color x:Key="CoyoteGreenCoolDark">#41FF23</Color>
+    <Color x:Key="CoyoteGreenLight">#83FF6D</Color>
+    <Color x:Key="CoyoteGreenDark">#41B723</Color>
 
-    <Color x:Key="CoyoteBlue">#22A5FE</Color>
-    <Color x:Key="CoyoteYellow">#FDFE22</Color>
+    <Color x:Key="CoyoteGreenCoolLight">#C4FFBA</Color>
+    <Color x:Key="CoyoteGreenCoolDark">#B4EAAB</Color>
 
-    <SolidColorBrush x:Key="CoyoteTextSalesBrush" Color="White" />
-    <SolidColorBrush x:Key="CoyoteTextFulfillmentBrush" Color="White" />
+    <Color x:Key="CoyoteGreenCoolLightAlpha">#96C4FFBA</Color>
+    <Color x:Key="CoyoteGreenCoolDarkAlpha">#96B4EAAB</Color>
+
+    <Color x:Key="CoyoteBlueCoolLight">#C7E7FC</Color>
+    <Color x:Key="CoyoteBlueCoolDark">#BDDCEF</Color>
+
+    <Color x:Key="CoyoteBlueCoolLightAlpha">#96C7E7FC</Color>
+    <Color x:Key="CoyoteBlueCoolDarkAlpha">#96BDDCEF</Color>
+
+    <Color x:Key="CoyoteYellowCoolLight">#FDFE8C</Color>
+    <Color x:Key="CoyoteYellowCoolDark">#E5E580</Color>
+
+    <Color x:Key="CoyoteYellowCoolLightAlpha">#96FDFE8C</Color>
+    <Color x:Key="CoyoteYellowCoolAlpha">#96E5E580</Color>
+
+    <SolidColorBrush x:Key="CoyoteTextSalesBrush" Color="#FFFFFF" />
+    <SolidColorBrush x:Key="CoyoteTextFulfillmentBrush" Color="#FFFFFF" />
 
     <!-- Initial values for these can be pulled from ThemeBrushes debug output -->
     <SolidColorBrush x:Key="SystemControlBackgroundAltHighBrush" Color="#FF000000" />
@@ -23,7 +40,7 @@
     <SolidColorBrush x:Key="SystemControlBackgroundListMediumBrush" Color="#33FFFFFF" />
     <SolidColorBrush x:Key="SystemControlDisabledBaseLowBrush" Color="#33FFFFFF" />
     <SolidColorBrush x:Key="SystemControlDisabledBaseMediumLowBrush" Color="#66FFFFFF" />
-    <SolidColorBrush x:Key="SystemControlDisabledChromeDisabledHighBrush" Color="#FF333333" />
+    <SolidColorBrush x:Key="SystemControlDisabledChromeDisabledHighBrush" Color="#333333" />
     <SolidColorBrush x:Key="SystemControlDisabledTransparentBrush" Color="#00FFFFFF" />
 
     <SolidColorBrush x:Key="SystemControlForegroundAccentBrush" Color="{StaticResource CoyoteGreenBase}" /> <!--  Color="#FF7F29CC" />-->
