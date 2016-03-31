@@ -70,7 +70,6 @@
     <None Include="App.config" />
     <None Include="App.config.example" />
     <None Include="packages.config" />
-    <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CL.Javelin.Core.Domain\CL.Javelin.Core.Domain.csproj">
