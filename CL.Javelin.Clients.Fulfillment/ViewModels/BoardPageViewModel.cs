@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using CL.Javelin.Clients.Shared.ViewModels;
 using Prism.Events;
 

@@ -1,8 +1,4 @@
-﻿using System;
-using CL.Javelin.Clients.Shared.ViewModels;
-using CL.Javelin.Core.Domain.Freight;
-using CL.Javelin.Core.Utilities;
-using Prism.Commands;
+﻿using CL.Javelin.Clients.Shared.ViewModels;
 using Prism.Events;
 
 namespace CL.Javelin.Clients.Sales.ViewModels
