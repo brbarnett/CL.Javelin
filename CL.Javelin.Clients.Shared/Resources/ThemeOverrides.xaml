@@ -27,6 +27,7 @@
     <Color x:Key="CoyoteYellowCoolLightAlpha">#D7FDFE22</Color>
     <Color x:Key="CoyoteYellowCoolAlpha">#D7FDFE22</Color>
 
+    <SolidColorBrush x:Key="CoyoteTextWhiteBrush" Color="#FFFFFF" />
     <SolidColorBrush x:Key="CoyoteTextSalesBrush" Color="#FFFFFF" />
     <SolidColorBrush x:Key="CoyoteTextFulfillmentBrush" Color="#FFFFFF" />
 
@@ -42,9 +43,7 @@
     <SolidColorBrush x:Key="SystemControlDisabledBaseMediumLowBrush" Color="#66FFFFFF" />
     <SolidColorBrush x:Key="SystemControlDisabledChromeDisabledHighBrush" Color="#333333" />
     <SolidColorBrush x:Key="SystemControlDisabledTransparentBrush" Color="#00FFFFFF" />
-
     <SolidColorBrush x:Key="SystemControlForegroundAccentBrush" Color="{StaticResource CoyoteGreenBase}" /> <!--  Color="#FF7F29CC" />-->
-    
     <SolidColorBrush x:Key="SystemControlForegroundBaseHighBrush" Color="#FFFFFFFF" />
     <SolidColorBrush x:Key="SystemControlForegroundBaseLowBrush" Color="#33FFFFFF" />
     <SolidColorBrush x:Key="SystemControlForegroundBaseMediumBrush" Color="#99FFFFFF" />

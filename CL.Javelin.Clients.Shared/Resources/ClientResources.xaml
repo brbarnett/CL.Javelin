@@ -36,14 +36,17 @@
 
     <Style x:Key="BoardListViewItemContainerStyleEvenSales" TargetType="ListViewItem" BasedOn="{StaticResource BoardListViewItemContainerStyleBase}">
         <Setter Property="Background" Value="{StaticResource CoyoteBlueCoolLightAlpha}"/>
+        <Setter Property="Foreground" Value="{ThemeResource CoyoteTextWhiteBrush}"/>
     </Style>
 
     <Style x:Key="BoardListViewItemContainerStyleEvenFulfillment" TargetType="ListViewItem" BasedOn="{StaticResource BoardListViewItemContainerStyleBase}">
         <Setter Property="Background" Value="{StaticResource CoyoteYellowCoolLightAlpha}"/>
+        <Setter Property="Foreground" Value="{ThemeResource CoyoteTextWhiteBrush}"/>
     </Style>
 
     <Style x:Key="BoardListViewItemContainerStyleOdd" TargetType="ListViewItem" BasedOn="{StaticResource BoardListViewItemContainerStyleBase}">
         <Setter Property="Background" Value="{StaticResource CoyoteGreenCoolLightAlpha}"/>
+        <Setter Property="Foreground" Value="{ThemeResource CoyoteTextWhiteBrush}"/>
     </Style>
 
    
