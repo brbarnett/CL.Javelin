@@ -48,9 +48,9 @@
     <SolidColorBrush x:Key="SystemControlForegroundBaseLowBrush" Color="#33FFFFFF" />
     <SolidColorBrush x:Key="SystemControlForegroundBaseMediumBrush" Color="#99FFFFFF" />
     <SolidColorBrush x:Key="SystemControlForegroundBaseMediumHighBrush" Color="#CCFFFFFF" />
-    <SolidColorBrush x:Key="SystemControlForegroundBaseMediumLowBrush" Color="#66FFFFFF" />
+    <SolidColorBrush x:Key="SystemControlForegroundBaseMediumLowBrush" Color="{StaticResource CoyoteGreenLight}" /><!--  Color="#66FFFFFF" />-->
     <SolidColorBrush x:Key="SystemControlForegroundChromeBlackMediumBrush" Color="#CC000000" />
-    <SolidColorBrush x:Key="SystemControlForegroundChromeDisabledLowBrush" Color="#FF858585" />
+    <SolidColorBrush x:Key="SystemControlForegroundChromeDisabledLowBrush" Color="{StaticResource CoyoteGreenLight}" /><!--  Color="#FF858585" />-->
     <SolidColorBrush x:Key="SystemControlForegroundTransparentBrush" Color="#00FFFFFF" />
     <SolidColorBrush x:Key="SystemControlHighlightAccentBrush" Color="{StaticResource CoyoteGreenBase}" /><!--  Color="#FF7F29CC" />-->
     <SolidColorBrush x:Key="SystemControlHighlightAltAccentBrush" Color="{StaticResource CoyoteGreenBase}" /><!--  Color="#FF7F29CC" />-->
@@ -62,18 +62,22 @@
     <SolidColorBrush x:Key="SystemControlHighlightBaseHighBrush" Color="#FFFFFFFF" />
     <SolidColorBrush x:Key="SystemControlHighlightBaseMediumBrush" Color="#99FFFFFF" />
     <SolidColorBrush x:Key="SystemControlHighlightBaseMediumLowBrush" Color="#66FFFFFF" />
-    <SolidColorBrush x:Key="SystemControlHighlightChromeAltLowBrush" Color="#FFF2F2F2" />
-    <SolidColorBrush x:Key="SystemControlHighlightChromeHighBrush" Color="#FF767676" />
+    <SolidColorBrush x:Key="SystemControlHighlightChromeAltLowBrush" Color="{StaticResource CoyoteGreenBase}" /><!--  Color="#FFF2F2F2" />-->
+    <SolidColorBrush x:Key="SystemControlHighlightChromeHighBrush" Color="{StaticResource CoyoteGreenLight}" /><!--  Color="#FF767676"" />-->
     <SolidColorBrush x:Key="SystemControlHighlightListAccentHighBrush" Color="{StaticResource CoyoteGreenBase}" /><!--  Color="#FF7F29CC" />-->
     <SolidColorBrush x:Key="SystemControlHighlightListAccentLowBrush" Color="{StaticResource CoyoteGreenBase}" /><!--  Color="#FF7F29CC" />-->
     <SolidColorBrush x:Key="SystemControlHighlightTransparentBrush" Color="#00FFFFFF" />
     <SolidColorBrush x:Key="SystemControlPageBackgroundAltMediumBrush" Color="#99000000" />
     <SolidColorBrush x:Key="SystemControlPageBackgroundBaseLowBrush" Color="#33FFFFFF" />
-    <SolidColorBrush x:Key="SystemControlPageTextBaseHighBrush" Color="{StaticResource CoyoteGreenBase}" /><!--  Color="#FFFFFFFF" />-->
+    <SolidColorBrush x:Key="SystemControlPageTextBaseHighBrush" Color="#FFFFFFFF" />
     <SolidColorBrush x:Key="TextBoxButtonBackgroundThemeBrush" Color="#00FFFFFF" />
     <SolidColorBrush x:Key="TextBoxButtonBorderThemeBrush" Color="#00FFFFFF" />
 
     <Style TargetType="TextBlock">
+        <Setter Property="Foreground" Value="{StaticResource CoyoteGreenBase}"/>
+    </Style>
+
+    <Style TargetType="Button">
         <Setter Property="Foreground" Value="{StaticResource CoyoteGreenBase}"/>
     </Style>
 </ResourceDictionary>
