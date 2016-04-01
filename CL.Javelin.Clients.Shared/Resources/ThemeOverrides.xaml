@@ -78,6 +78,7 @@
     </Style>
 
     <Style TargetType="Button">
-        <Setter Property="Foreground" Value="{StaticResource CoyoteGreenBase}"/>
+        <Setter Property="Background" Value="{StaticResource CoyoteGreenDark}" />
     </Style>
+
 </ResourceDictionary>
